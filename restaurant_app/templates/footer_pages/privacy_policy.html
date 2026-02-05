@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Confidențialitate{%endblock%}
+
+{% block content %}
+    {% comment %} PRIVACY POLICY {% endcomment %}
+    <section id="privacy">
+        <h1>Politica de Confidențialitate (GDPR) – Nova Sushi</h1>
+        <p>
+            La <strong>Nova Sushi</strong>, respectăm confidențialitatea datelor tale și ne angajăm să le protejăm în conformitate cu 
+            Regulamentul (UE) 2016/679 (GDPR). Această politică explică ce date colectăm, de ce le colectăm și cum le 
+            folosim atunci când vizitezi site-ul nostru sau utilizezi serviciile noastre de rezervări și comenzi.
+        </p>
+
+        <h2 class="privacy">Cine suntem?</h2>
+        <p>
+            Operatorul datelor tale este <strong>S.C. Nova Sushi Concept SRL</strong>, cu sediul în Strada Exemplului nr. 10, București, 
+            email: <a href="mailto:contact.nova.sushi@gmail.com" class="link">contact.nova.sushi@gmail.com.</a>
+        </p>
+
+        <h2 class="privacy">Ce date colectăm și de ce?</h2>
+        <p>
+            Colectăm doar datele strict necesare pentru a-ți oferi serviciile noastre:
+            <ul>
+                <li>
+                    <strong>Pentru Rezervări/Comenzi:</strong> Nume, prenume, număr de telefon și adresa de email. (Temei legal: Executarea unui contract/serviciu).
+                </li>
+                <li>
+                    <strong>Pentru Formularul de Contact:</strong> Nume, email și orice informații ne transmiți în mesaj. (Temei legal: 
+                    Interes legitim pentru a răspunde solicitărilor tale).
+                </li>
+                <li><strong>Navigare pe site:</strong> Adresa IP, tipul browserului și durata vizitei (prin Cookies). (Temei legal: Consimțământ).</li>
+            </ul>
+        </p>
+
+        <h2 class="privacy">Cât timp păstrăm datele?</h2>
+        <p>
+            <ul>
+                <li>
+                    Datele aferente <strong>rezervărilor/comenzilor</strong> sunt păstrate pe durata necesară procesării vizitei tale și ulterior pentru 
+                    o perioadă de maximum 1 an (în scop statistic sau de loializare).
+                </li>
+                <li>Datele din <strong>formularul de contact</strong> sunt păstrate pe durata soluționării cererii tale (maximum 6 luni dacă 
+                    nu se transformă într-o colaborare comercială).</li>
+                <li>Datele <strong>fiscale</strong> (bonuri, facturi) sunt păstrate conform legislației contabile (5-10 ani).</li>
+            </ul>
+        </p>
+
+        <h2 class="privacy">Cine mai are acces la datele tale?</h2>
+        <p>
+            Nu vindem niciodată datele tale. Acestea pot fi accesate doar de parteneri esențiali, sub contracte stricte de 
+            confidențialitate:
+            <ul>
+                <li>Furnizorul de hosting și mentenanță al site-ului.</li>
+                <li>
+                    Platformele de livrare (dacă comanzi prin Glovo/Tazz/Wolt/Bolt Food – aceștia au propriile politici de confidențialitate).
+                </li>
+                <li>Autorități ale statului (doar la cerere legală).</li>
+            </ul>
+        </p>
+
+        <h2 class="privacy">Drepturile tale conform GDPR</h2>
+        <p>
+            Ai control deplin asupra datelor tale:
+            <ol>
+                <li><strong>Dreptul de acces:</strong> Poți cere o copie a datelor pe care le deținem despre tine.</li>
+                <li><strong>Dreptul la rectificare:</strong> Poți cere corectarea datelor greșite.</li>
+                <li>
+                    <strong>Dreptul la ștergere („dreptul de a fi uitat”):</strong> Poți cere ștergerea datelor tale (cu excepția celor pe 
+                    care suntem obligați legal să le păstrăm).
+                </li>
+                <li><strong>Dreptul la opoziție:</strong> Te poți opune prelucrării datelor în scop de marketing.</li>
+                <li><strong>Dreptul la portabilitate:</strong> Poți cere mutarea datelor la un alt operator.</li>
+            </ol>
+        </p>
+
+        <h2 class="privacy">Securitatea datelor</h2>
+        <p>
+            Am implementat măsuri tehnice (certificat SSL, criptare, acces restricționat) pentru a preveni accesul 
+            neautorizat, pierderea sau distrugerea datelor tale personale.
+        </p>
+
+        <h2 class="privacy">Contact pentru protecția datelor</h2>
+        <p>
+            Dacă ai întrebări despre cum procesăm datele tale sau vrei să îți exerciți unul dintre drepturile de mai sus, 
+            ne poți scrie oricând la: <strong><a href="mailto:contact.nova.sushi@gmail.com" class="link">contact.nova.sushi@gmail.com</a></strong> (Subiect: Solicitare GDPR).
+        </p>
+
+        <a href="{% url 'menu' %}" class="home__btn">Revino la meniu</a>
+    </section>
+{% endblock %}

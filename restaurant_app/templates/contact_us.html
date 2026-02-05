@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Contact{%endblock%}
+
+{% block content %}
+    {% comment %} CONTACT US {% endcomment %}
+    <section id="contact">
+        <div class="contact__container">
+            <h1>Contact și Rezervări</h1>
+            <p class="contact__intro">Suntem aici pentru a-ți oferi cea mai bună experiență. Ne poți contacta pentru rezervări, comenzi sau orice alte întrebări.</p>
+        </div>
+
+        <div class="contact__details">
+            <div class="contact__item">
+                <h3><i class="ri-map-pin-2-line"></i></i> Locație</h3>
+                <p>Strada Exemplului nr. 10, București</p> <p>(Punct de reper: Lângă Parcul Central)</p>
+            </div>
+
+            <div class="contact__item">
+                <h3><i class="ri-time-line"></i> Program</h3>
+                <p><strong>Luni - Joi:</strong> 12:00 - 22:00</p>
+                <p><strong>Vineri - Sâmbătă:</strong> 12:00 - 23:00</p>
+                <p><strong>Duminică:</strong>  Închis</p>
+            </div>
+
+            <div class="contact__item">
+                <h3><i class="ri-phone-fill"></i> Rezervări</h3>
+                <p><strong>Telefon:</strong> <a href="tel:+40722222222">+40 722 222 222</a></p>
+                <p><strong>Email:</strong> <a href="mailto:rezervari.nova.sushi@gmail.com">rezervari.nova.sushi@gmail.com</a></p>
+            </div>
+        </div>
+
+        <div class="contact__map-section">
+            <div class="contact__map-card">
+                <div class="map-wrapper">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.8443916964147!2d26.1000!3d44.4400!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDTCsDI2JzI0LjAiTiAyNsKwMDYnMDAuMCJF!5e0!3m2!1sro!2sro!4v1710000000000!5m2!1sro!2sro" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="map-info">
+                    <p><i class="ri-navigation-line"></i> Faceți clic pe hartă pentru indicații rutiere către locația noastră.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact__form-container">
+            <div class="contact__form-wrapper">
+                <h2>Trimite-ne un mesaj</h2>
+
+                <form method="post" class="contact__form">
+                    {% csrf_token %}
+            
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field }}
+                    
+                            {% if field.errors %}
+                                <span class="error-text">{{ field.errors }}</span>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                    <button type="submit" class="btn-submit">Trimite mesajul</button>
+                </form>
+                {% if messages %}
+                    <div class="messages-container">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="faq__container">
+            <h2 class="faq__title">Întrebări frecvente</h2>
+            
+            <div class="faq__list">
+                <details class="faq__item">
+                    <summary class="faq__question">
+                        Cum pot face o rezervare pentru un grup mai mare?
+                        <i class="ri-add-line"></i>
+                    </summary>
+                    <div class="faq__answer">
+                        <p>Pentru grupuri mai mari de 8 persoane, vă rugăm să ne contactați telefonic cu cel puțin 48 de ore înainte pentru a vă asigura disponibilitatea și a stabili un meniu personalizat dacă este necesar.</p>
+                    </div>
+                </details>
+
+                <details class="faq__item">
+                    <summary class="faq__question">
+                        Aveți opțiuni vegetariene sau vegane?
+                        <i class="ri-add-line"></i>
+                    </summary>
+                    <div class="faq__answer">
+                        <p>Da, meniul nostru include o varietate de rulouri sushi vegetariene, precum și preparate calde pe bază de legume și tofu. Verificați preparatele vegetariene din meniul nostru.</p>
+                    </div>
+                </details>
+
+                <details class="faq__item">
+                    <summary class="faq__question">
+                        Livrați și la domiciliu?
+                        <i class="ri-add-line"></i>
+                    </summary>
+                    <div class="faq__answer">
+                        <p>Da, restaurantul nostru dispune de flotă personală de curieri. De asemenea avem parteneriate cu platforme de livrare a mâncării (Glovo, Tazz, Wolt, Bolt Food) sau puteți comanda cu ridicare personală direct din locația noastră.</p>
+                    </div>
+                </details>
+
+                <details class="faq__item">
+                    <summary class="faq__question">
+                        Există parcare disponibilă în apropierea locației?
+                        <i class="ri-add-line"></i>
+                    </summary>
+                    <div class="faq__answer">
+                        <p>Da, puteți găsi locuri de parcare publice pe străzile adiacente sau în parcarea amenajată a Parcului Central, aflat la doar 2 minute de mers pe jos de restaurantul nostru.</p>
+                    </div>
+                </details>
+
+                <details class="faq__item">
+                    <summary class="faq__question">
+                        Organizați evenimente private sau petreceri aniversare?
+                        <i class="ri-add-line"></i>
+                    </summary>
+                    <div class="faq__answer">
+                        <p>Ne face plăcere să găzduim momente speciale! Putem rezerva o zonă dedicată pentru aniversări sau evenimente corporate. Contactați-ne prin formularul de mai sus sau prin email pentru o ofertă personalizată.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+{% endblock %}

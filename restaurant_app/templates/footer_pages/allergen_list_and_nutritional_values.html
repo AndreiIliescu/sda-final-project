@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Valori nutriționale și alergeni{%endblock%}
+
+{% block content %}
+    {% comment %} ALLERGEN LIST AND NUTRITIONAL VALUES {% endcomment %}
+    <section id="allergen">
+        <h1>Alergeni și Valori Nutriționale – Nova Sushi</h1>
+        <p>Transparența și siguranța clienților noștri sunt prioritare. Pentru ca tu să te bucuri de experiența Nova Sushi 
+            fără nicio grijă, am centralizat aici toate informațiile necesare despre ingredientele folosite, prezența 
+            alergenilor și aportul nutrițional al preparatelor noastre.
+        </p>
+
+        <h2 class="allergen">Declarație privind Alergenii</h2>
+        <p>
+            Conform Regulamentului UE 1169/2011 și Ordinului ANPC 201/2022, vă informăm că preparatele noastre pot conține 
+            următoarele categorii de substanțe care pot cauza alergii sau intoleranțe:
+            <ol>
+                <li><strong>Cereale care conțin gluten</strong> (grâu, secară, orz, ovăz).</li>
+                <li><strong>Crustacee</strong> și produse derivate (ex: creveți, crab).</li>
+                <li><strong>Ouă</strong> și produse derivate (ex: maioneză).</li>
+                <li><strong>Pește</strong> și produse derivate.</li>
+                <li><strong>Arahide</strong> și produse derivate.</li>
+                <li><strong>Soia</strong> și produse derivate (ex: sos de soia, tofu).</li>
+                <li><strong>Lapte</strong> și produse derivate (inclusiv lactoză - ex: cremă de brânză).</li>
+                <li><strong>Fructe cu coajă lemnoasă</strong> (migdale, alune, nuci, caju, fistic).</li>
+                <li><strong>Țelină</strong> și produse derivate.</li>
+                <li><strong>Muștar</strong> și produse derivate.</li>
+                <li><strong>Semințe de susan</strong> și produse derivate.</li>
+                <li><strong>Dioxid de sulf și sulfiți</strong>.</li>
+                <li><strong>Lupin</strong> și produse derivate.</li>
+                <li><strong>Moluște</strong> și produse derivate (ex: caracatiță, calamar).</li>
+            </ol>
+        </p>
+
+        <h2 class="allergen">Consultă Tabelul Detaliat</h2>
+        <p>
+            Deoarece meniul nostru este variat, am creat un document complet unde poți verifica pentru fiecare produs în 
+            parte (Maki, Nigiri, Sashimi, Rulouri Speciale):
+            <ul>
+                <li><strong>Ingredientele detaliate</strong>;</li>
+                <li><strong>Alergenii prezenți</strong>;</li>
+                <li><strong>Valorile nutriționale</strong> (Valoare energetică, Grăsimi, Acizi grași saturați, Glucide, Zaharuri, Proteine, Sare).</li>
+            </ul>
+            <a href="#" target="_blank" download class="link"><strong>👉 DESCARCĂ LISTA COMPLETĂ DE ALERGENI ȘI VALORI NUTRIȚIONALE (PDF)</strong></a>
+        </p>
+
+        <h2 class="allergen">Notă pentru persoanele cu sensibilități severe</h2>
+        <p>
+            Deși luăm măsuri stricte pentru a evita contaminarea încrucișată, vă informăm că în bucătăria noastră se 
+            manipulează simultan diverse ingrediente (pește crud, crustacee, susan, soia, lactate). Prin urmare, <strong>nu putem 
+            garanta absența totală a urmelor de alergeni</strong> în niciunul dintre preparatele noastre.
+        </p>
+        <p>
+            Dacă aveți o alergie severă, vă rugăm să specificați acest lucru echipei noastre în momentul plasării comenzii la 
+            telefon sau să menționați în secțiunea de observații a aplicațiilor de livrare.
+        </p>
+
+        <h2 class="allergen">Produse provenite din decongelare</h2>
+        <p>
+            În conformitate cu normele de siguranță alimentară și pentru a asigura eliminarea paraziților specifici peștelui 
+            crud (procedura de refrigerare/congelare controlată), anumite materii prime folosite de Nova Sushi (ex: ton, 
+            somon, creveți) pot proveni din produse decongelate. Calitatea și gustul rămân la standardele noastre de 
+            excelență.
+        </p>
+
+        <a href="{% url 'menu' %}" class="home__btn">Revino la meniu</a>
+    </section>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Sesizări și reclamații{%endblock%}
+
+{% block content %}
+    {% comment %} COMPLAINTS AND NOTIFICATIONS {% endcomment %}
+    <section id="complaints">
+        <h1>Reclamații și Sesizări – Nova Sushi</h1>
+        <p>
+            La Nova Sushi, ne străduim să oferim produse și servicii de cea mai înaltă calitate. Totuși, înțelegem că uneori 
+            lucrurile nu merg conform planului. Dacă ai avut o experiență care nu s-a ridicat la nivelul așteptărilor tale, te 
+            rugăm să ne contactezi direct pentru a găsi o soluție rapidă și amiabilă.
+        </p>
+
+        <h2 class="complaints">Cum poți depune o sesizare?</h2>
+        <p>
+            Pentru a procesa solicitarea ta cât mai eficient, te rugăm să ne trimiți un mesaj care să conțină următoarele detalii:
+            <ol>
+                <li>
+                    <strong>Numele și prenumele</strong> tale.
+                </li>
+
+                <li>
+                    <strong>Data și ora</strong> comenzii sau a vizitei în locație.
+                </li>
+
+                <li>
+                    <strong>Numărul bonului fiscal</strong> sau al comenzii (dacă este cazul).
+                </li>
+
+                <li>
+                    <strong>O descriere detaliată</strong> a situației întâmpinate
+                </li>
+
+                <li>
+                    <strong>Fotografii doveditoare</strong> (în cazul în care sesizarea privește calitatea produselor livrate).
+                </li>
+            </ol>
+        </p>
+
+        <h2 class="complaints">Canale de Contact Direct</h2>
+        <p>
+            Ne poți transmite reclamația ta prin oricare dintre următoarele metode:
+            <ul>
+                <li>
+                    <strong>Email:</strong> <a href="mailto:sesizari.nova.sushi@gmail.com" class="link">sesizari.nova.sushi@gmail.com</a> (Subiect: Sesizare - [Numele Tău])
+                </li>
+
+                <li>
+                    <strong>Telefon:</strong> <a href="tel:+40722222222" class="link">+40 722 222 222</a> (Luni - Sâmbătă, 12:00 - 20:00)
+                </li>
+
+                <li>
+                    <strong>Formular online:</strong> Poți folosi și <a href="{% url 'contact_us' %}" class="link">Formularul de Contact</a> de pe site-ul nostru, selectând la subiect opțiunea „Sesizare”.
+                </li>
+            </ul>
+        </p>
+
+        <h2 class="complaints">Termen de soluționare</h2>
+        <p>
+            Echipa noastră va analiza sesizarea ta în cel mai scurt timp posibil. Ne angajăm să revenim cu un răspuns oficial 
+            și o propunere de soluționare în termen de maximum <strong>2-5 zile lucrătoare</strong> de la primirea mesajului tău.
+        </p>
+
+        <h2 class="complaints">Soluționarea Alternativă a Litigiilor</h2>
+        <p>
+            Dacă consideri că reclamația ta nu a fost rezolvată satisfăcător prin dialog direct cu noi, ai dreptul de a apela la mecanismele externe de soluționare:
+
+            <ol>
+                <li>
+                    <strong>ANPC:</strong> Autoritatea Națională pentru Protecția Consumatorilor <a href="https://anpc.ro/" target="_blank" rel="noopener" class="link">(www.anpc.ro)</a>.
+                </li>
+
+                <li>
+                    <strong>SAL:</strong> Soluționarea Alternativă a Litigiilor (mecanism prin care consumatorii pot rezolva litigiile cu comercianții în afara instanțelor de judecată).
+                </li>
+
+                <li>
+                    <strong>SOL:</strong> Platforma de Soluționare Online a Litigiilor a Comisiei Europene (pentru comenzile online).
+                </li>
+            </ol>
+
+            <strong>Notă importantă:</strong> Recomandăm întotdeauna contactarea prealabilă a echipei Nova Sushi pentru o rezolvare mult mai rapidă și directă a oricărei neînțelegeri. Feedback-ul tău ne ajută să devenim mai buni în fiecare zi.
+        </p>
+
+        <a href="{% url 'menu' %}" class="home__btn">Revino la meniu</a>
+    </section>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Plăți și livrare{%endblock%}
+
+{% block content %}
+    {% comment %} PAYMENTS AND DELIVERY {% endcomment %}
+    <section id="payments">
+        <h1>Plăți și Livrare – Nova Sushi</h1>
+        <p>
+            La <strong>Nova Sushi</strong>, ne dorim ca procesul de comandă să fie la fel de plăcut ca și degustarea preparatelor noastre. 
+            Mai jos găsești toate informațiile necesare despre modalitățile de plată și opțiunile de livrare disponibile.
+        </p>
+
+        <h2 class="payments">Modalități de Plată</h2>
+        <p>
+            Indiferent dacă alegi să mănânci în restaurantul nostru sau să comanzi acasă, îți punem la dispoziție următoarele 
+            metode de plată:
+            <ul>
+                <li>
+                    <strong>Plată cu cardul (online pe site-ul nostru, în locație sau la livrare):</strong> Acceptăm carduri sub sigla Visa, Mastercard și Maestro. Toate 
+                    plățile prin card sunt procesate securizat.
+                </li>
+                <li>
+                    <strong>Plată numerar (Cash):</strong> Poți achita comanda în numerar atât la ridicarea personală din restaurant, cât și la 
+                    curier în momentul livrării.
+                </li>
+                <li>
+                    <strong>Plată Online (prin aplicații partener):</strong> Dacă plasezi comanda prin platformele partenerilor noștri 
+                    (Glovo, Tazz, Wolt, Bolt Food), poți achita direct prin aplicație cu cardul salvat.
+                </li>
+                <li>
+                    <strong>Tichete de masă:</strong> Acceptăm carduri de tichete de masă (Sodexo/Pluxee, Edenred, UP) exclusiv pentru plățile 
+                    efectuate în locația noastră fizică.
+                </li>
+            </ul>
+        </p>
+
+        <h2 class="payments">Livrarea Produselor</h2>
+        <p>
+            În acest moment, serviciul de livrare Nova Sushi este organizat astfel:
+            <ol type="A">
+                <li>Livrare prin Parteneri (Glovo, Tazz, Wolt, Bolt Food)</li>
+                <ul>
+                    <li>
+                        <strong>Aria de acoperire:</strong> Este determinată de platforma parteneră (în general, pe raza Municipiului București).
+                    </li>
+                    <li>
+                        <strong>Timpul de livrare:</strong> Acesta variază între 30 și 60 de minute, în funcție de volumul de comenzi și de 
+                        trafic. Timpul estimat va fi afișat în aplicație înainte de finalizarea comenzii.
+                    </li>
+                    <li>
+                        <strong>Taxa de livrare:</strong> Este stabilită de aplicația parteneră și poate varia în funcție de distanță sau 
+                        promoții active.
+                    </li>
+                </ul>
+                <li>Ridicare Personală (Takeaway)</li>
+                <ul>
+                    <li>Poți plasa comanda telefonic la numărul <strong><a href="tel:+40722222222" class="link">+40 722 222 222</a></strong> sau direct pe site-ul nostru și o poți ridica personal din locația noastră: 
+                        <strong>Strada Exemplului nr. 10, București</strong>.</li>
+                    <li><strong>Timp de pregătire:</strong> Aproximativ <strong>20-30 de minute</strong>.</li>
+                    <li>
+                        <strong>Cost:</strong> Pentru ridicarea personală nu se percepe nicio taxă suplimentară de ambalare sau transport.
+                    </li>
+                </ul>
+                <li>Livrare prin flota de curieri personală</li>
+                <ul>
+                    <li><strong>Aria de acoperire:</strong> Livrăm pe toată aria Municipiului București, dar și a localităților limitrofe (Nord: Voluntari, Pipera, Otopeni, Corbeanca; Vest: Bragadiru, Domnești, Chiajna; Sud: Popești-Leordeni, Berceni, 1 Decembrie; Est: Pantelimon, Cernica, Dobroești, Fundeni).</li>
+                    <li><strong>Timpul de livrare:</strong> Acesta variază între 30 și 60 de minute (pentru Municipiul București) și peste 90 de minute (pentru localitățile limitrofe), în funcție de volumul de comenzi, de trafic și de distanța dintre restaurant și adresa de livrare.</li>
+                    <li><strong>Taxa de livrare:</strong> Se percepe o taxă  standard de 30 de lei pentru livrarea în aria Municipiului București sau 50 de lei pentru localitățile limitrofe.</li>
+                    <li><strong>Comandă minimă:</strong> Pentru comenzile plasate telefonic sau prin intermediul site-ului nostru, cu livrare prin flota personală de curieri, costul minim al comenzii trebuie să fie de 80 de lei (pentru aria Municipiului București) sau 150 de lei (pentru localitățile limitrofe).</li>
+                </ul>
+            </ol>
+        </p>
+
+        <h2 class="payments">Ambalarea Produselor</h2>
+        <p>
+            Siguranța alimentară este prioritatea noastră. Toate comenzile de sushi sunt ambalate în cutii speciale, 
+            biodegradabile sau reciclabile, care mențin prospețimea și integritatea rulourilor pe durata transportului.
+            <ul>
+                <li>
+                    <strong>Consum recomandat:</strong> Sushi-ul este un produs proaspăt. Recomandăm consumul imediat sau în maximum 2 ore de la 
+                    livrare (păstrat la temperaturi de 2-4°C).
+                </li>
+            </ul>
+        </p>
+
+        <h2 class="payments">Verificarea Comenzii</h2>
+        <p>
+            Te rugăm să verifici integritatea pachetului în momentul recepției. Orice neconcordanță între produsele comandate 
+            și cele livrate trebuie raportată imediat curierului sau restaurantului nostru pentru a putea remedia situația în 
+            cel mai scurt timp.
+        </p>
+
+        <a href="{% url 'menu' %}" class="home__btn">Revino la meniu</a>
+    </section>
+{% endblock %}

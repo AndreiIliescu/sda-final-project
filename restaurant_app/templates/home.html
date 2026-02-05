@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+    {% comment %} HOME {% endcomment %}
+    <section>
+        <div class="home__container">
+            <h1>Nova Sushi: Tradiție Japoneză, Gust Modern</h1>
+            <p>
+                La Nova Sushi, credem că mâncarea este o experiență, nu doar o necesitate. Fie că ești un iubitor devotat de Sashimi 
+                    și Nigiri, sau vrei să te încălzești cu un Ramen autentic și să savurezi o bere japoneză rece, meniul nostru este 
+                    creat pentru a-ți răsfăța simțurile. Folosim doar ingrediente premium, pește proaspăt și tehnici de preparare care 
+                    onorează cultura asiatică. Răsfoiește meniul nostru și pregătește-te pentru o călătorie culinară de neuitat.
+            </p>
+            <div class="home__buttons" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
+                <a href="{% url 'menu' %}" class="btn-primary">
+                    Comandă Online <i class="ri-restaurant-2-line"></i>
+                </a>
+                <a href="#" class="btn-secondary">
+                    Rezervă o Masă <i class="ri-calendar-check-line"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="carousel">
+            <div class="group">
+                <img src="{% static 'images/carousel_images/carousel_sushi.webp' %}" alt="Sushi" loading="eager" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_ramen.webp' %}" alt="Ramen" loading="eager" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_gyoza.webp' %}" alt="Gyoza" loading="eager" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_onigiri.webp' %}" alt="Onigiri" loading="eager" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_takoyaki.webp' %}" alt="Takoyaki" loading="eager" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_bento_box.webp' %}" alt="Bento box" loading="eager" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_rice_boul.webp' %}" alt="Rice boul" loading="lazy" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_mochi.webp' %}" alt="Mochi" loading="lazy" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_dango.webp' %}" alt="Dango" loading="lazy" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_matcha.webp' %}" alt="Matcha-Tiramisu" loading="lazy" class="card" />
+            </div>
+            <div aria-hidden="true" class="group">
+                <img src="{% static 'images/carousel_images/carousel_sushi.webp' %}" alt="Sushi" loading="lazy" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_ramen.webp' %}" alt="Ramen" loading="lazy" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_gyoza.webp' %}" alt="Gyoza" loading="lazy" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_onigiri.webp' %}" alt="Onigiri" loading="lazy" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_takoyaki.webp' %}" alt="Takoyaki" loading="lazy" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_bento_box.webp' %}" alt="Bento box" loading="lazy" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_rice_boul.webp' %}" alt="Rice boul" loading="lazy" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_mochi.webp' %}" alt="Mochi" loading="lazy" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_dango.webp' %}" alt="Dango" loading="lazy" class="card" />
+                <img src="{% static 'images/carousel_images/carousel_matcha.webp' %}" alt="Matcha-Tiramisu" loading="lazy" class="card" />
+            </div>
+        </div>
+    </section>
+{% endblock %}

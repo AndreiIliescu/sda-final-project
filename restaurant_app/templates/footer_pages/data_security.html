@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Securitatea datelor{%endblock%}
+
+{% block content %}
+    {% comment %} DATA SECURITY {% endcomment %}
+    <section id="data">
+        <h1>Securitatea Datelor – Nova Sushi</h1>
+        <p>
+            La <strong>Nova Sushi</strong>, protecția informațiilor dumneavoastră este o prioritate absolută. Ne angajăm să menținem un mediu 
+            digital sigur și să utilizăm tehnologii avansate pentru a preveni accesul neautorizat, divulgarea sau alterarea 
+            datelor dumneavoastră personale.
+        </p>
+
+        <h2 class="data">Tehnologii de Criptare (SSL)</h2>
+        <p>
+            Site-ul nostru utilizează un certificat <strong>SSL (Secure Sockets Layer)</strong> de înaltă calitate. Această tehnologie 
+            criptează legătura dintre browserul dumneavoastră și serverul nostru, asigurându-se că toate datele transmise 
+            prin formularele de contact sau rezervare (nume, telefon, adrese) rămân private și nu pot fi interceptate de terți.
+        </p>
+
+        <h2 class="data">Protecția Formularelor (Django Security)</h2>
+        <p>
+            Deoarece platforma noastră este construită pe framework-ul Django, beneficiem de protecție nativă împotriva celor 
+            mai frecvente vulnerabilități web:
+            <ul>
+                <li>
+                    <strong>Protecție CSRF (Cross-Site Request Forgery):</strong> Fiecare formular conține un jeton unic de securitate pentru 
+                    a ne asigura că datele provin de la dumneavoastră și nu de la un script malițios.
+                </li>
+                <li>
+                    <strong>Protecție împotriva injecțiilor SQL:</strong> Sistemul nostru de baze de date este izolat, împiedicând accesul 
+                    neautorizat la informațiile stocate.
+                </li>
+            </ul>
+        </p>
+
+        <h2 class="data">Acces Restricționat</h2>
+        <p>
+            Accesul la datele colectate (de exemplu, lista de rezervări) este strict limitat la un număr restrâns de angajați 
+            Nova Sushi care au nevoie de aceste informații pentru a-și îndeplini atribuțiile (manageri de restaurant, personal 
+            recepție). Aceștia sunt instruiți periodic cu privire la importanța confidențialității și securității cibernetice.
+        </p>
+
+        <h2 class="data">Parteneri de Încredere</h2>
+        <p>
+            Pentru serviciile externe, colaborăm exclusiv cu furnizori care respectă standardele internaționale de securitate:
+            <ul>
+                <li><strong>Hosting:</strong> Serverele noastre sunt găzduite în centre de date securizate, monitorizate 24/7.</li>
+                <li>
+                    <strong>Plăți Online:</strong> În cazul plăților viitoare prin card pe site-ul nostru, procesarea va fi realizată de 
+                    procesatori de plăți certificați PCI-DSS, astfel încât datele cardului dumneavoastră să nu atingă 
+                    niciodată serverele noastre.
+                </li>
+            </ul>
+        </p>
+
+        <h2 class="data">Monitorizare și Audit</h2>
+        <p>
+            Monitorizăm constant sistemele noastre pentru a identifica eventuale puncte vulnerabile sau tentative de atac. 
+            În cazul puțin probabil al unui incident de securitate care să afecteze datele dumneavoastră, Nova Sushi va 
+            acționa imediat conform regulamentului GDPR, notificând autoritățile și persoanele vizate în termenele legale.
+        </p>
+
+        <h2 class="data">Recomandări pentru Utilizatori</h2>
+        <p>
+            Deși noi facem tot posibilul pentru a vă proteja datele, securitatea începe și de la dumneavoastră:
+            <ul>
+                <li>Nu divulgați nimănui detaliile confirmărilor de rezervare.</li>
+                <li>Asigurați-vă că navigați de pe dispozitive cu software actualizat și soluții antivirus.</li>
+                <li>
+                    Verificați întotdeauna prezența simbolului "lăcățel" în bara de adrese a browserului atunci când 
+                    introduceți date personale.
+                </li>
+            </ul>
+        </p>
+
+        <a href="{% url 'menu' %}" class="home__btn">Revino la meniu</a>
+    </section>
+{% endblock %}

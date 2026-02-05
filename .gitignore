@@ -1,0 +1,101 @@
+# =============== Python =============== #
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.env/
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+/build/
+/develop-eggs/
+/dist/
+/downloads/
+/eggs/
+/lib/
+/lib64/
+/parts/
+/sdist/
+/var/
+/wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.pyo
+*.pyd
+
+# =============== Django =============== #
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+static_root/
+# static/
+
+# =============== Configurații Sensibile (Environment Variables) =============== #
+.env
+.env.*
+!.env.example
+.venv
+env.ini
+.flaskenv
+secrets.json
+*.key
+*.pem
+
+# =============== Testare și Acoperire =============== #
+htmlcov/
+.tox/
+.nox/
+.nosetests
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+
+
+# =============== IDE-uri și Editoare =============== #
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+
+# =============== Node/Frontend (dacă folosești Webpack sau Tailwind) =============== #
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn.log
+package-lock.json
+yarn.lock
+
+# =============== Celery =============== #
+celerybeat-schedule
+celerybeat.pid
+
+# =============== Backup și Temporare =============== #
+*.bak
+*.tmp
+*.temp
+*~
+
+# =============== Docker =============== #
+docker-compose.override.yml
+.dockerignore

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Termeni și condiții{%endblock%}
+
+{% block content %}
+    {% comment %} TERMS AND CONDITIONS {% endcomment %}
+    <section id="terms">
+        <h1>Termeni și Condiții – Nova Sushi</h1>
+        <p>
+            Bine ați venit pe site-ul Nova Sushi. Utilizarea acestui site și plasarea comenzilor sau rezervărilor implică 
+            acceptarea termenilor și condițiilor de mai jos. Vă recomandăm să citiți cu atenție acest document.
+        </p>
+
+        <h2 class="terms">Informații Generale</h2>
+        <p>
+            Site-ul este operat de <strong>S.C. Nova Sushi Concept SRL</strong>, cu sediul în <strong>București</strong>, înregistrată la Registrul Comerțului sub nr. 
+            <strong>J40/7843/2025</strong>, CUI <strong>RO45891276</strong>. Prezentul document stabilește condițiile în care puteți utiliza 
+            site-ul și serviciile noastre.
+        </p>
+
+        <h2 class="terms">Rezervări în Restaurant</h2>
+        <ul>
+            <li>Rezervările pot fi efectuate telefonic sau prin intermediul formularului de pe site.</li>
+            <li>
+                O rezervare este considerată confirmată doar după primirea unei confirmări (telefonice sau prin email) 
+                din partea personalului Nova Sushi.
+            </li>
+            <li>
+                Vă rugăm să ne anunțați cu cel puțin <strong>2 ore înainte</strong> în cazul în care doriți să anulați sau să modificați o rezervare.
+            </li>
+            <li>
+                Masa rezervată va fi păstrată timp de maximum <strong>15 minute</strong> după ora stabilită, după care rezervarea va fi anulată automat.
+            </li>
+        </ul>
+
+        <h2 class="terms">Comenzi și Prețuri</h2>
+        <ul>
+            <li>Toate prețurile afișate pe site sunt exprimate în <strong>RON</strong> și includ <strong>TVA</strong>.</li>
+            <li>
+                Nova Sushi își rezervă dreptul de a modifica prețurile și ofertele speciale fără o notificare prealabilă, 
+                însă aceste modificări nu vor afecta comenzile deja confirmate.
+            </li>
+            <li>
+                Imaginile produselor sunt cu titlu de prezentare. Deoarece preparatele sunt realizate manual, pot exista mici 
+                diferențe vizuale.
+            </li>
+        </ul>
+
+        <h2 class="terms">Anularea Comenzilor și Returul</h2>
+        <ul>
+            <li>
+                Conform OUG 34/2014, produsele alimentare care sunt susceptibile de a se deteriora sau a expira rapid sunt 
+                <strong>exceptate de la dreptul de retragere</strong>.
+            </li>
+            <li>Odată ce prepararea comenzii a început, aceasta nu mai poate fi anulată.</li>
+            <li>
+                Dacă produsul livrat este neconform (greșit sau prezintă defecte de calitate), vă rugăm să ne contactați 
+                imediat pentru înlocuirea acestuia sau rambursarea contravalorii.
+            </li>
+        </ul>
+
+        <h2 class="terms">Proprietate Intelectuală</h2>
+        <p>
+            Întreg conținutul site-ului (texte, fotografii, design, logo) este proprietatea exclusivă a Nova Sushi și este 
+            protejat de legea drepturilor de autor. Copierea sau utilizarea acestora fără acord scris este interzisă.
+        </p>
+
+        <h2 class="terms">Limitarea Răspunderii</h2>
+        <p>
+            Nova Sushi nu poate fi trasă la răspundere pentru daune de orice fel rezultate din utilizarea site-ului sau din 
+            eventuale erori tehnice ce pot apărea pe platformă. De asemenea, nu răspundem pentru întârzierile de livrare 
+            cauzate de factori externi (vreme extremă, trafic intens, defecțiuni ale platformelor partenerilor de livrare).
+        </p>
+
+        <h2 class="terms">Protecția Datelor (GDPR)</h2>
+        <p>
+            Prelucrarea datelor cu caracter personal se face conform Politicii de Confidențialitate. Prin utilizarea 
+            formularelor de contact sau rezervare, sunteți de acord cu colectarea datelor necesare pentru prestarea serviciului.
+        </p>
+
+        <h2 class="terms">Litigii</h2>
+        <p>
+            Orice conflict apărut între Nova Sushi și clienții săi va fi soluționat pe cale amiabilă. În cazul în care acest 
+            lucru nu este posibil, competența revine instanțelor judecătorești din București sau prin mecanismele de 
+            Soluționare Alternativă a Litigiilor (SAL/SOL).
+        </p>
+
+        <a href="{% url 'menu' %}" class="home__btn">Revino la meniu</a>
+    </section>
+{% endblock %}

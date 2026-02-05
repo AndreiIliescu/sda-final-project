@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Datele firmei{%endblock%}
+
+{% block content %}
+    {% comment %} COMPANY IDENTIFICATION DATA {% endcomment %}
+    <section id="company">
+        <h1>Date de identificare ale societății – Nova Sushi</h1>
+        <p>
+            În conformitate cu legislația în vigoare și pentru a asigura o transparență totală în relația cu clienții 
+            noștri, vă prezentăm datele de identificare ale operatorului economic care administrează platforma web și 
+            serviciile <strong>Nova Sushi</strong>.
+            <ul>
+                <li><strong>Denumire Comercială:</strong> Nova Sushi</li>
+                <li><strong>Formă Juridică:</strong> S.C. Nova Sushi Concept SRL</li>
+                <li><strong>Cod Unic de Înregistrare (CUI):</strong> RO45891276</li>
+                <li><strong>Număr Reg. Com.:</strong> J40/7843/2025</li>
+                <li><strong>Sediul Social:</strong> Str. Exemplului Nr. 10, Sector 1, București</li>
+                <li><strong>Capital Social:</strong> 200 RON</li>
+            </ul>
+        </p>
+
+        <h2 class="company">Contact și Puncte de Lucru</h2>
+        <p>
+            <ul>
+                <li><strong>Adresa Restaurantului:</strong> Strada Exemplului nr. 10, București (Punct de reper: Lângă Parcul Central).</li>
+                <li><strong>Număr de Telefon:</strong> <a href="tel:+40722222222" class="link">+40 722 222 222</a></li>
+                <li><strong>Adresă de Email:</strong> <a href="mailto:contact.nova.sushi@gmail.com" class="link">contact.nova.sushi@gmail.com</a></li>
+                <li><strong>Website Oficial:</strong> <a href="https://novasushi.ro/" target="_blank" rel="noopener" class="link">www.novasushi.ro</a></li>
+            </ul>
+        </p>
+
+        <h2 class="company">Autorizații și Avize</h2>
+        <p>
+            Nova Sushi funcționează respectând toate normele de siguranță alimentară, igienă și funcționare comercială impuse de:
+            <ul>
+                <li><strong>ANSVSA</strong> (Autoritatea Națională Sanitară Veterinară și pentru Siguranța Alimentelor).</li>
+                <li><strong>DSP</strong> (Direcția de Sănătate Publică).</li>
+                <li><strong>Primăria Municipiului București</strong> (Autorizație de funcționare).</li>
+            </ul>
+        </p>
+
+        <h2 class="company">Link-uri Utile Autorități (Acces Rapid)</h2>
+        <p>
+            Pentru protecția dumneavoastră, puteți accesa oricând site-urile oficiale ale autorităților de control:
+            <ul>
+                <li><strong>ANPC:</strong> <a href="https://anpc.ro/" target="_blank" rel="noopener" class="link">www.anpc.ro</a></li>
+                <li><strong>ANSPDCP (GDPR):</strong> <a href="https://www.dataprotection.ro/" target="_blank" rel="noopener" class="link">www.dataprotection.ro</a></li>
+                <li><strong>Platforma SOL:</strong> <a href="https://https://consumer-redress.ec.europa.eu/site-relocation_en" target="_blank" rel="noopener" class="link">Soluționarea Online a Litigiilor</a></li>
+            </ul>
+        </p>
+
+        <a href="{% url 'menu' %}" class="home__btn">Revino la meniu</a>
+    </section>
+{% endblock %}

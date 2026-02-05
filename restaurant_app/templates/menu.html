@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    {% csrf_token %}
+    {% comment %} MENU {% endcomment %}
+    <section id="menu">
+        <div class="menu__container">
+            <h1>Meniul Nova Sushi</h1>
+            <p>Exploră selecția noastră de preparate autentice. De la prospețimea sushi-ului, la aromele complexe din Ramen și deserturile tradiționale japoneze.</p>
+        </div>
+
+        {% for cat in categories %}
+            <div class="menu__category">
+                <h2 class="category__name">{{ cat.name }}</h2>
+                
+                <div class="menu__grid">
+                    {% for product in cat.products.all %}
+                    <div class="menu__card">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card__img" loading="lazy">
+                        {% endif %}
+                        
+                        <div class="card__data">
+                            <h3 class="card__title">{{ product.name }}</h3>
+                            <p class="card__description">{{ product.description }}</p>
+                            
+                            <div class="card__footer">
+                                <span class="card__price">{{ product.price }} lei</span>
+
+                                <button class="wishlist-btn {% if product.id in user_favorites %}active{% endif %}" 
+                                        data-product-id="{{ product.id }}">
+                                    
+                                    <i class="{% if product.id in user_favorites %}ri-heart-fill{% else %}ri-heart-line{% endif %}"></i>
+                                </button>
+
+                                <button class="card__button add-to-cart-btn" 
+                                        value="{{ product.id }}" 
+                                        data-url="{% url 'cart_add' %}">
+                                    <i class="ri-add-line"></i> Adaugă
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                        <p>Momentan nu avem produse în această categorie.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}

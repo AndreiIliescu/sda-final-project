@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Politica cookies{%endblock%}
+
+{% block content %}
+    {% comment %} COOKIES POLICY {% endcomment %}
+    <section id="cookies">
+        <h1>Politica de Cookies – Nova Sushi</h1>
+        <p>
+            Site-ul nostru utilizează module cookie pentru a vă oferi o experiență de navigare mai bună, pentru a analiza 
+            traficul și pentru a asigura securitatea formularelor noastre. Această politică explică ce sunt aceste tehnologii 
+            și care sunt drepturile dumneavoastră.
+        </p>
+
+        <h2 class="cookies">Ce este un „cookie”?</h2>
+        <p>
+            Un cookie este un fișier text de mici dimensiuni, format din litere și numere, care va fi stocat pe computerul, 
+            terminalul mobil sau alte echipamente ale unui utilizator de pe care se accesează internetul. Modulele cookie nu 
+            conțin software, viruși sau spyware și nu pot accesa informațiile de pe hard-disk-ul dumneavoastră.
+        </p>
+
+        <h2 class="cookies">Ce tipuri de cookies folosim?</h2>
+        <p>
+            Noi folosim două categorii principale de module cookie:
+            <ul>
+                <li>
+                    <strong>Cookies strict necesare:</strong> Acestea sunt esențiale pentru funcționarea site-ului. De exemplu, folosim un 
+                    cookie de securitate care protejează formularele de contact și rezervare împotriva atacurilor cibernetice. 
+                    Fără acestea, site-ul nu poate funcționa corect.
+                </li>
+                <li>
+                    <strong>Cookies de performanță și analiză:</strong> Acestea ne permit să numărăm vizitele și sursele de trafic, astfel 
+                    încât să putem măsura și îmbunătăți performanța site-ului nostru (ex: Google Analytics). Toate 
+                    informațiile colectate de aceste cookie-uri sunt agregate și, prin urmare, anonime.
+                </li>
+            </ul>
+        </p>
+
+        <h2 class="cookies">Cât timp rămân cookie-urile în dispozitivul dumneavoastră?</h2>
+        <p>
+            <ul>
+                <li>
+                    <strong>Cookies de sesiune:</strong> Acestea sunt temporare și sunt șterse automat imediat ce închideți browserul.
+                </li>
+                <li>
+                    <strong>Cookies persistente:</strong> Acestea rămân pe dispozitivul dumneavoastră pentru o perioadă determinată 
+                    (de la câteva zile la câțiva ani) sau până când le ștergeți manual din setările browserului.
+                </li>
+            </ul>
+        </p>
+
+        <h2 class="cookies">Cum puteți controla cookie-urile?</h2>
+        <p>
+            Majoritatea browserelor web sunt setate să accepte cookie-uri în mod implicit. Totuși, aveți posibilitatea de a 
+            modifica setările browserului pentru a bloca anumite tipuri de cookies sau pentru a fi notificat atunci când un 
+            cookie este trimis către dispozitivul dumneavoastră.
+        </p>
+        <p>
+            Vă rugăm să rețineți că dezactivarea cookie-urilor strict necesare poate afecta funcționalitatea anumitor secțiuni 
+            ale site-ului (cum ar fi imposibilitatea de a trimite formularul de rezervare).
+        </p>
+        <p>
+            Pentru a afla mai multe despre gestionarea cookie-urilor în browserul dumneavoastră, accesați secțiunea „Ajutor” 
+            (Help) a acestuia sau vizitați <a href="https://www.allaboutcookies.org" target="_blank" rel="noopener" class="link">www.allaboutcookies.org</a>.
+        </p>
+
+        <h2 class="cookies">Actualizări ale politicii</h2>
+        <p>
+            Nova Sushi își rezervă dreptul de a actualiza această Politică de Cookies ori de câte ori este necesar pentru a 
+            reflecta schimbările tehnologice sau legislative. Orice modificare va fi afișată pe această pagină.
+        </p>
+
+        <a href="{% url 'menu' %}" class="home__btn">Revino la meniu</a>
+    </section>
+{% endblock %}
