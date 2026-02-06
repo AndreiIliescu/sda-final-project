@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="success-container" style="text-align: center; padding: 8rem 0 5rem 0;">
+    <i class="ri-calendar-check-fill" style="font-size: 4rem; color: #28a745;"></i>
+    <h1>Rezervare confirmată cu succes!</h1>
+    <p style="font-size: 1.2rem; margin: 15px 0;">
+        Îți mulțumim, <strong>{{ reservation.full_name }}</strong>! <br>
+        Te așteptăm pe data de <strong>{{ reservation.date|date:"d-m-Y" }}</strong> la ora <strong>{{ reservation.time_slot|time:"H:i" }}</strong>.
+    </p>
+    <p>Un email cu detaliile rezervării a fost trimis către {{ reservation.email }}.</p>
+
+    <div style="margin-top: 30px;">
+        <a href="{% url 'home' %}" class="btn-primary">Înapoi la prima pagină</a>
+    </div>
+</div>
+{% endblock %}

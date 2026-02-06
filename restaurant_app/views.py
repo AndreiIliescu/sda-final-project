@@ -3,8 +3,8 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.db.models import Prefetch
 from django.shortcuts import render, redirect
-from restaurant_app.forms import ContactForm
-from restaurant_app.models import Category, Product
+from restaurant_app.forms import ContactForm, ReservationForm
+from restaurant_app.models import Category, Product, Reservation
 
 
 # Create your views here.
@@ -72,6 +72,50 @@ def contact_us_page(request):
         form = ContactForm()
 
     return render(request, "contact_us.html", {"form": form})
+
+
+def book_reservation_page(request):
+    initial_data = {}
+    if request.user.is_authenticated:
+        user_phone = getattr(request.user.profile, "phone_number", "")
+        initial_data = {
+            "full_name": f"{request.user.first_name} {request.user.last_name}".strip(),
+            "email": request.user.email,
+            "phone": user_phone
+        }
+
+    if request.method == "POST":
+        form = ReservationForm(request.POST)
+        if form.is_valid():
+            reservation = form.save(commit=False)
+            
+            guests = form.cleaned_data.get("guests")
+            if guests < 1:
+                messages.error(request, "Numărul de persoane trebuie să fie cel puțin 1.")
+            elif guests > 8:
+                messages.error(request, "Pentru mai mult de 8 persoane, vă rugăm să ne contactați direct.")
+            else:
+                if request.user.is_authenticated:
+                    reservation.user = request.user
+                
+                existing_count = Reservation.objects.filter(
+                    date=reservation.date, 
+                    time_slot=reservation.time_slot
+                ).count()
+                
+                if existing_count >= 5:
+                    messages.error(request, "Ne pare rău, dar acest interval orar este deja complet ocupat.")
+                else:
+                    reservation.save()
+                    try:
+                        send_mail(reservation)
+                    except Exception as e:
+                        print(f"Eroare la trimitere email: {e}")
+                    return render(request, "reservation_success.html", {"reservation": reservation})
+    else:
+        form = ReservationForm(initial=initial_data)
+
+    return render(request, "reservation.html", {"form": form})
 
 
 def complaints_and_notifcations_page(request):

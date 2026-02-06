@@ -27,6 +27,7 @@ urlpatterns = [
     path("despre/", views.about_us_page, name="about_us"),
     path("meniu/", views.menu_page, name="menu"),
     path("contact/", views.contact_us_page, name="contact_us"),
+    path("rezervare/", views.book_reservation_page, name="book_reservation"),
     
     path("reclamatii/", views.complaints_and_notifcations_page, name="complaints"),
     path("plati-si-livrare/", views.payments_and_delivery_page, name="payments"),
