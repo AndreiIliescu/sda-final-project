@@ -22,6 +22,26 @@ class ContactForm(forms.ModelForm):
 
 
 class ReservationForm(forms.ModelForm):
+    TIME_CHOICES = [
+        ('12:00:00', '12:00'),
+        ('12:30:00', '12:30'),
+        ('13:00:00', '13:00'),
+        ('13:30:00', '13:30'),
+        ('14:00:00', '14:00'),
+        ('18:00:00', '18:00'),
+        ('18:30:00', '18:30'),
+        ('19:00:00', '19:00'),
+        ('19:30:00', '19:30'),
+        ('20:00:00', '20:00'),
+        ('20:30:00', '20:30'),
+        ('21:00:00', '21:00'),
+    ]
+    
+    time_slot = forms.ChoiceField(
+        choices=TIME_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    
     class Meta:
         model = Reservation
         fields = ["full_name", "email", "phone", "date", "time_slot", "guests"]

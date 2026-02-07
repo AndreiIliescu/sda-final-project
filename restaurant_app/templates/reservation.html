@@ -21,13 +21,11 @@
                     </div>
                     <div class="form-group">
                         <label>Data</label>
-                        <input type="date" name="date" id="id_date" required class="form-control">
+                        {{ form.date }}
                     </div>
                     <div class="form-group">
                         <label>Ora Disponibilă</label>
-                        <select name="time_slot" id="id_time_slot" required>
-                            <option value="">Selectează data întâi...</option>
-                        </select>
+                        {{ form.time_slot }}
                     </div>
                     <div class="form-group">
                         <label>Număr Persoane</label>
