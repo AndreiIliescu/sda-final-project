@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="profile-container">
+        {% if user.is_authenticated %}
+            <div class="profile-wrapper">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="ri-user-line"></i>
+                    </div>
+                    <h1>{{user.username}}</h1>
+                </div>
+
+                {% if messages %}
+                    <div class="messages-container">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <div class="profile-section">
+                    <h2>Detaliile contului</h2>
+                    
+                    {% if user.profile %}
+                        <div class="profile-details">
+                            <div class="detail-row">
+                                <span class="detail-label">Nume:</span>
+                                <span class="detail-value">{{user.profile.name}}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Email:</span>
+                                <span class="detail-value">{{user.email}}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Telefon:</span>
+                                <span class="detail-value">{{user.profile.phone}}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Adresă:</span>
+                                <span class="detail-value">{{user.profile.home_address}}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Oraș:</span>
+                                <span class="detail-value">{{user.profile.city}}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Sector:</span>
+                                <span class="detail-value">{{user.profile.district}}</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-actions">
+                            <a href="{% url 'edit_profile' user.profile.pk %}" class="btn-admin"><i class="ri-pencil-line"></i> Modifică profilul</a>
+                        </div>
+                    {% else %}
+                        <p class="no-profile">Profilul nu este completat</p>
+                    {% endif %}
+                </div>
+
+                {% if user.is_staff or user.is_superuser %}
+                    <div class="profile-section">
+                        <h2>Administrare</h2>
+                        <div class="profile-actions">
+                            <a href="#" class="btn-admin">
+                                <i class="ri-add-line"></i> Adaugă un preparat nou
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="profile-section">
+                    <h2>Produse favorite</h2>
+                    
+                    {% if user.profile.favorites.all %}
+                        <div class="favorites-grid">
+                            {% for product in user.profile.favorites.all %}
+                                <div class="favorite-card">
+                                    {% if product.image %}
+                                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="favorite-img">
+                                    {% endif %}
+                                    <div class="favorite-info">
+                                        <p class="favorite-name">{{ product.name }}</p>
+                                        <p class="favorite-price">{{ product.price }} lei</p>
+                                    </div>
+                                    <div class="favorite-actions">
+                                        <a href="#" class="btn-icon">
+                                            <i class="ri-heart-fill"></i>
+                                        </a>
+                                        <a href="#" class="btn-add-cart">
+                                            <i class="ri-shopping-cart-line"></i> Adaugă în coș
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="no-favorites">Nu ai produse favorite momentan.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+        {% else %}
+            <div class="profile-wrapper">
+                <div class="not-logged-in">
+                    <i class="ri-error-warning-line"></i>
+                    <p>Se pare că nu ești conectat sau acest profil nu a fost găsit!</p>
+                    <div class="auth-links">
+                        <p>Poți crea un cont nou <a href="{% url 'register' %}">aici</a></p>
+                        <p>Sau te poți conecta la un cont existent <a href="{% url 'login' %}">aici</a></p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </section>
+{% endblock %}

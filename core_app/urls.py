@@ -33,6 +33,9 @@ urlpatterns = [
     path("conectare/", views.CustomLogInView.as_view(), name="login"),
     path("deconectare/", views.logout_page, name="logout"),
     
+    path("profil/", views.user_profile_page, name="profile"),
+    path("editeaza-profil/<int:pk>/", views.ProfileEditView.as_view(), name="edit_profile"),
+    
     path("reclamatii/", views.complaints_and_notifcations_page, name="complaints"),
     path("plati-si-livrare/", views.payments_and_delivery_page, name="payments"),
     path("valori-nutritionale/", views.allergen_and_nutritional_values_page, name="allergens"),

@@ -80,7 +80,7 @@
 
                     {% if user.is_authenticated %}
                         <li>
-                            <a href="#">{{ user.username }}</a>
+                            <a href="{% url 'profile' %}">{{ user.username }}</a>
                         </li>
 
                         <p> | </p>

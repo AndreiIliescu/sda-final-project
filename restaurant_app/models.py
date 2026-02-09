@@ -57,6 +57,8 @@ class Reservation(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    username = models.CharField(max_length=150, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
     name = models.CharField(max_length=100, null=True, blank=True)
     phone = models.CharField(max_length=20, null=True, blank=True)
     home_address = models.CharField(max_length=150, null=True, blank=True)
@@ -64,6 +66,12 @@ class Profile(models.Model):
     district = models.CharField(max_length=50, null=True, blank=True)
 
     favorites = models.ManyToManyField(Product, blank=True, related_name="favorited_by")
+    
+    def save(self, *args, **kwargs):
+        self.user.username = self.username
+        self.user.email = self.email
+        self.user.save()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.user.username

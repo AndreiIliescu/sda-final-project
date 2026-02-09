@@ -106,11 +106,13 @@ class RegisterProfileForm(UserCreationForm):
         if commit:
             Profile.objects.create(
                 user = user,
+                username=user.username,
+                email=user.email,
                 name = self.cleaned_data.get("name", ""),
                 phone = self.cleaned_data.get("phone", ""),
                 home_address = self.cleaned_data.get("home_address", ""),
                 city = self.cleaned_data.get("city", ""),
-                country = self.cleaned_data.get("country", ""),
+                district = self.cleaned_data.get("district", ""),
             )
             
         return user

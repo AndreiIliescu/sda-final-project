@@ -1,12 +1,15 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
 from django.db.models import Prefetch
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, UpdateView, DeleteView
 from restaurant_app.forms import ContactForm, RegisterProfileForm, ReservationForm
-from restaurant_app.models import Category, Product, Reservation
+from restaurant_app.models import Category, Product, Profile, Reservation
 
 
 # Create your views here.
@@ -79,9 +82,15 @@ def contact_us_page(request):
 def book_reservation_page(request):
     initial_data = {}
     if request.user.is_authenticated:
-        user_phone = getattr(request.user.profile, "phone_number", "")
+        if hasattr(request.user, 'profile'):
+            user_phone = request.user.profile.phone or ""
+            user_name = request.user.profile.name or f"{request.user.first_name} {request.user.last_name}".strip()
+        else:
+            user_phone = ""
+            user_name = f"{request.user.first_name} {request.user.last_name}".strip()
+        
         initial_data = {
-            "full_name": f"{request.user.first_name} {request.user.last_name}".strip(),
+            "full_name": user_name,
             "email": request.user.email,
             "phone": user_phone
         }
@@ -155,16 +164,19 @@ def company_identification_data_page(request):
 def register_user_page(request):
     if request.method == "POST":
         register_form = RegisterProfileForm(request.POST)
+        terms_accepted = request.POST.get("terms")
         
-        if register_form.is_valid():
+        if not terms_accepted:
+            messages.error(request, "Trebuie să accepți Termenii și Condițiile pentru a continua.")
+        elif register_form.is_valid():
             user = register_form.save()
+            
             login(request, user)
             return redirect("home")
-        
     else:
         register_form = RegisterProfileForm()
-        
-    return render(request, "register.html", {"register_form": register_form})
+    
+    return render(request, "register.html", {"form": register_form})
 
 
 class CustomLogInView(LoginView):
@@ -175,3 +187,18 @@ class CustomLogInView(LoginView):
 def logout_page(request):
     logout(request)
     return redirect("home")
+
+
+@login_required
+def user_profile_page(request):
+    return render(request, "user_profile.html")
+
+
+class ProfileEditView(UpdateView):
+    model = Profile
+    template_name = "edit_profile.html"
+    fields = ["username", "email", "name", "phone", "home_address", "city", "district"]
+    success_url = reverse_lazy("profile")
+
+    def get_object(self, queryset=None):
+        return self.request.user.profile
