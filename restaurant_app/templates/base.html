@@ -74,31 +74,26 @@
                         <a href="{% url 'contact_us' %}">Contactează-ne</a>
                     </li>
 
-                    {% comment %} <li class="cart-nav-item">
-                        <a href="{% url 'cart_summary' %}"><i class="ri-shopping-cart-line"></i></a>
-                        <span id="cart-qty" class="cart-badge">{{ cart|length }}</span>
+                    <li class="cart-nav-item">
+                        <a href="#">Coș <i class="ri-shopping-cart-line"></i></a>
                     </li>
 
                     {% if user.is_authenticated %}
-                        <li class="user-menu">
-                            <a href="{% url 'profile' %}" class="username-link">
-                                <span class="username">{{ user.username }}</span>
-                            </a>
-                            
-                            <form action="{% url 'log_out' %}" method="POST" class="logout-form">
-                                {% csrf_token %}
-                                <button type="submit" class="logout-btn">
-                                    <span class="logout-text"></span><i class="ri-logout-box-r-line"></i>
-                                </button>
-                            </form>
+                        <li>
+                            <a href="#">{{ user.username }}</a>
                         </li>
+
+                        <p> | </p>
+
+                        <li>
+                            <a href="{% url 'logout' %}">Deconectează-te <i class="ri-logout-box-r-line"></i></a>
+                        </li>
+
                     {% else %}
                         <li>
-                            <a href="{% url 'log_in' %}">
-                                <i class="ri-user-line"></i>
-                            </a>
+                            <a href="{% url 'login' %}">Intră în cont <i class="ri-user-line"></i></a>
                         </li>
-                    {% endif %} {% endcomment %}
+                    {% endif %}
                 </ul>
             </nav>
         </div>

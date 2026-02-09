@@ -29,6 +29,10 @@ urlpatterns = [
     path("contact/", views.contact_us_page, name="contact_us"),
     path("rezervare/", views.book_reservation_page, name="book_reservation"),
     
+    path("inregistrare/", views.register_user_page, name="register"),
+    path("conectare/", views.CustomLogInView.as_view(), name="login"),
+    path("deconectare/", views.logout_page, name="logout"),
+    
     path("reclamatii/", views.complaints_and_notifcations_page, name="complaints"),
     path("plati-si-livrare/", views.payments_and_delivery_page, name="payments"),
     path("valori-nutritionale/", views.allergen_and_nutritional_values_page, name="allergens"),

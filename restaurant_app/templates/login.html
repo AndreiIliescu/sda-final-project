@@ -1,0 +1,37 @@
+{% extends "auth_base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="auth-container">
+        <div class="auth-form-wrapper">
+            <h1>Intră în cont</h1>
+            
+            <form method="POST" class="auth-form">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label>Nume Utilizator sau Email:</label>
+                    {{ form.username }}
+                </div>
+                
+                <div class="form-group">
+                    <label>Parolă:</label>
+                    {{ form.password }}
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="remember_me" name="remember_me">
+                    <label for="marketing">
+                        Ține-mă minte
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-submit">Conectează-te</button>
+                
+                <p>Nu ai cont? Apasă <a href="{% url 'register' %}">aici</a> pentru a crea unul.</p>
+
+                <p>Ți-ai uitat parola? Apasă <a href="#">aici</a> pentru a o schimba.</p>
+            </form>
+        </div>
+    </section>
+{% endblock %}

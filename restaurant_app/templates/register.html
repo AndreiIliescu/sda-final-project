@@ -1,0 +1,61 @@
+{% extends "auth_base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="auth-container">
+        <div class="auth-form-wrapper">
+            <h1>Cont Nou</h1>
+            
+            {% if messages %}
+                <div class="messages-container">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <form method="POST" class="auth-form">
+                {% csrf_token %}
+                
+                {% for field in form %}
+                    <div class="form-group">
+                        <label>{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}<span class="error-text">{{ field.errors }}</span>{% endif %}
+                        {% if field.help_text %}<small class="help-text">{{ field.help_text }}</small>{% endif %}
+                    </div>
+                {% endfor %}
+
+                <div class="auth-legal-checks">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" name="terms">
+                        <label for="terms">
+                            Sunt de acord cu <a href="{% url 'terms' %}" target="_blank">Termenii și Condițiile</a> și 
+                            <a href="{% url 'privacy' %}" target="_blank">Politica de Confidențialitate (GDPR)</a>.
+                        </label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="remember_me" name="remember_me">
+                        <label for="marketing">
+                            Doresc să primesc oferte speciale și noutăți de la Nova Sushi prin email. (Opțional)
+                        </label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="marketing" name="marketing">
+                        <label for="marketing">
+                            Ține-mă minte
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">Creează Contul</button>
+                
+                <p>Ai deja un cont? Apasă <a href="{% url 'login' %}">aici</a> pentru a te conecta.</p>
+            </form>
+        </div>
+    </section>
+{% endblock %}

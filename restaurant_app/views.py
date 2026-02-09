@@ -1,9 +1,11 @@
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.auth import login, logout
+from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
 from django.db.models import Prefetch
 from django.shortcuts import render, redirect
-from restaurant_app.forms import ContactForm, ReservationForm
+from restaurant_app.forms import ContactForm, RegisterProfileForm, ReservationForm
 from restaurant_app.models import Category, Product, Reservation
 
 
@@ -148,3 +150,28 @@ def data_security_page(request):
 
 def company_identification_data_page(request):
     return render(request, "footer_pages/company_identification_data.html")
+
+
+def register_user_page(request):
+    if request.method == "POST":
+        register_form = RegisterProfileForm(request.POST)
+        
+        if register_form.is_valid():
+            user = register_form.save()
+            login(request, user)
+            return redirect("home")
+        
+    else:
+        register_form = RegisterProfileForm()
+        
+    return render(request, "register.html", {"register_form": register_form})
+
+
+class CustomLogInView(LoginView):
+    template_name = "login.html"
+    redirect_authenticated_user = True
+    
+    
+def logout_page(request):
+    logout(request)
+    return redirect("home")

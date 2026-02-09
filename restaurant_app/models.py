@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -52,3 +53,17 @@ class Reservation(models.Model):
 
     def __str__(self):
         return f"Rezervare {self.full_name} - {self.date} {self.time_slot}"
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    name = models.CharField(max_length=100, null=True, blank=True)
+    phone = models.CharField(max_length=20, null=True, blank=True)
+    home_address = models.CharField(max_length=150, null=True, blank=True)
+    city = models.CharField(max_length=70, null=True, blank=True)
+    district = models.CharField(max_length=50, null=True, blank=True)
+
+    favorites = models.ManyToManyField(Product, blank=True, related_name="favorited_by")
+
+    def __str__(self):
+        return self.user.username
