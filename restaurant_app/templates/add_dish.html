@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="auth-container">
+        <div class="auth-form-wrapper">
+            <h1>{% if form.instance.pk %}Editează preparatul{% else %}Adaugă un nou preparat{% endif %}</h1>
+
+            <form method="post" enctype="multipart/form-data" class="auth-form">
+                {% csrf_token %}
+                
+                {% for field in form %}
+                    {% if field.name == 'availability' %}
+                        <div class="checkbox-group">
+                            {{ field }}
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        </div>
+                        {% if field.errors %}
+                            <span class="error-text">
+                                {% for error in field.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </span>
+                        {% endif %}
+                    {% else %}
+                        <div class="form-group">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.errors %}
+                                <span class="error-text">
+                                    {% for error in field.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </span>
+                            {% endif %}
+                            {% if field.help_text %}
+                                <small class="help-text">{{ field.help_text }}</small>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                <button type="submit" class="btn-submit">
+                    {% if form.instance.pk %}Salvează modificările{% else %}Adaugă preparatul{% endif %}
+                </button>
+                
+                <p><a href="{% url 'menu' %}">Anulează și înapoi la meniu</a></p>
+            </form>
+        </div>
+    </section>
+{% endblock %}

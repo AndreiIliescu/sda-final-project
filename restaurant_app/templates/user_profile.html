@@ -12,16 +12,6 @@
                     <h1>{{user.username}}</h1>
                 </div>
 
-                {% if messages %}
-                    <div class="messages-container">
-                        {% for message in messages %}
-                            <div class="alert alert-{{ message.tags }}">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-
                 <div class="profile-section">
                     <h2>Detaliile contului</h2>
                     
@@ -54,7 +44,9 @@
                         </div>
 
                         <div class="profile-actions">
-                            <a href="{% url 'edit_profile' user.profile.pk %}" class="btn-admin"><i class="ri-pencil-line"></i> Modifică profilul</a>
+                            <a href="{% url 'edit_profile' user.profile.pk %}" class="btn-edit">
+                                <i class="ri-pencil-line"></i> Modifică profilul
+                            </a>
                         </div>
                     {% else %}
                         <p class="no-profile">Profilul nu este completat</p>
@@ -65,7 +57,7 @@
                     <div class="profile-section">
                         <h2>Administrare</h2>
                         <div class="profile-actions">
-                            <a href="#" class="btn-admin">
+                            <a href="{% url 'add_dish' %}" class="btn-admin">
                                 <i class="ri-add-line"></i> Adaugă un preparat nou
                             </a>
                         </div>
@@ -87,12 +79,18 @@
                                         <p class="favorite-price">{{ product.price }} lei</p>
                                     </div>
                                     <div class="favorite-actions">
-                                        <a href="#" class="btn-icon">
-                                            <i class="ri-heart-fill"></i>
-                                        </a>
-                                        <a href="#" class="btn-add-cart">
-                                            <i class="ri-shopping-cart-line"></i> Adaugă în coș
-                                        </a>
+                                        <form method="post" action="{% url 'add_favorite' product.pk %}" style="display: inline;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn-icon">
+                                                <i class="ri-heart-fill"></i>
+                                            </button>
+                                        </form>
+                                        <form method="post" action="{% url 'add_to_cart' product.pk %}" style="display: inline;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn-add-cart">
+                                                <i class="ri-shopping-cart-line"></i> Adaugă în coș
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             {% endfor %}

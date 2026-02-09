@@ -5,10 +5,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
 from django.db.models import Prefetch
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
-from restaurant_app.forms import ContactForm, RegisterProfileForm, ReservationForm
+from restaurant_app.forms import ContactForm, ProductForm, RegisterProfileForm, ReservationForm
 from restaurant_app.models import Category, Product, Profile, Reservation
 
 
@@ -202,3 +202,70 @@ class ProfileEditView(UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user.profile
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = "add_dish.html"
+    success_url = reverse_lazy("profile")
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    form_class = ProductForm
+    template_name = "add_dish.html"
+    success_url = reverse_lazy("menu")
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    template_name = "delete_dish.html"
+    success_url = reverse_lazy("menu")
+
+
+@login_required
+def add_to_favorites(request, product_id):
+    if request.method == "POST":
+        product = get_object_or_404(Product, pk=product_id)
+        profile = request.user.profile
+
+        if product in profile.favorites.all():
+            profile.favorites.remove(product)
+        else:
+            profile.favorites.add(product)
+
+    return redirect("menu")
+
+
+def add_to_cart(request, product_id):
+    if request.method == "POST":
+        product = get_object_or_404(Product, pk=product_id)
+        cart = request.session.get("cart", {})
+
+        if str(product_id) in cart:
+            cart[str(product_id)]["quantity"] += 1
+        else:
+            cart[str(product_id)] = {
+                "name": product.name,
+                "price": float(product.price),
+                "image": product.image.url if product.image else "",
+                "quantity": 1,
+            }
+
+        request.session["cart"] = cart
+        request.session.modified = True
+
+    return redirect("menu")
+
+
+def cart_page(request):
+    cart = request.session.get("cart", {})
+    total = 0
+
+    for item in cart.values():
+        total += item["price"] * item["quantity"]
+
+    context = {"cart": cart, "total": total,}
+
+    return render(request, "cart.html", context)

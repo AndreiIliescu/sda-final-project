@@ -650,6 +650,64 @@ body {
   }
 }
 
+/* =============== ADMIN MENU ACTIONS =============== */
+.admin-menu-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.admin-link {
+  flex: 1;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: all 0.25s ease;
+  background: transparent;
+  border: 1px solid;
+}
+
+.admin-edit {
+  color: #666;
+  border-color: #ddd;
+}
+
+.admin-edit:hover {
+  color: #1a1a1a;
+  border-color: #1a1a1a;
+  background: rgba(26, 26, 26, 0.03);
+}
+
+.admin-delete {
+  color: #999;
+  border-color: #e0e0e0;
+}
+
+.admin-delete:hover {
+  color: #bc002d;
+  border-color: #bc002d;
+  background: rgba(188, 0, 45, 0.03);
+}
+
+.admin-link i {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .admin-menu-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
 /* =============== ADD TO FAVORITE MENU BUTTON =============== */
 .card__footer {
   display: flex;
@@ -1637,6 +1695,181 @@ body {
 
 .checkbox-group label a:hover {
   text-decoration: underline;
+}
+
+/* =============== DELETE DISH PAGE =============== */
+.delete-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 20px;
+  min-height: 60vh;
+}
+
+.delete-wrapper {
+  width: 100%;
+  max-width: 550px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.delete-header {
+  background: #bc002d;
+  padding: 2rem;
+  text-align: center;
+  color: #fff;
+}
+
+.delete-header i {
+  font-size: 3.5rem;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.delete-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.delete-content {
+  padding: 2rem;
+}
+
+.delete-question {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.dish-preview {
+  background: #fafaf7;
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  border: 2px solid #f0f0f0;
+}
+
+.dish-preview-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border: 3px solid #bc002d;
+}
+
+.dish-preview-name {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+}
+
+.dish-preview-category {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 0.8rem;
+}
+
+.dish-preview-price {
+  color: #bc002d;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.delete-warning {
+  text-align: center;
+  color: #bc002d;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  padding: 0.8rem;
+  background: rgba(188, 0, 45, 0.05);
+  border-radius: 6px;
+  border: 1px solid rgba(188, 0, 45, 0.2);
+}
+
+.delete-form {
+  margin: 0;
+}
+
+.delete-actions {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.btn-delete {
+  width: 100%;
+  padding: 1rem;
+  background: #bc002d;
+  color: #fff;
+  border: 2px solid #bc002d;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-delete:hover {
+  background: #900022;
+  border-color: #900022;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(188, 0, 45, 0.3);
+}
+
+.btn-cancel {
+  width: 100%;
+  padding: 1rem;
+  background: transparent;
+  color: #1a1a1a;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.btn-cancel:hover {
+  background: #f0f0f0;
+  border-color: #999;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .delete-container {
+    padding: 2rem 15px;
+  }
+
+  .delete-wrapper {
+    max-width: 100%;
+  }
+
+  .delete-content {
+    padding: 1.5rem;
+  }
+
+  .dish-preview-img {
+    width: 120px;
+    height: 120px;
+  }
 }
 
 /* =============== SCROLL UP =============== */

@@ -32,14 +32,18 @@
                         {{ form.guests }}
                         <small id="guests-warning" class="error-text" style="display:none; color: #bc002d; font-size: 0.8rem;"></small>
                     </div>
+
+                    {% if messages %}
+                        <div class="messages-container">
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                     <button type="submit" class="btn-submit">Confirmă Rezervarea</button>
                 </form>
-                
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-                    {% endfor %}
-                {% endif %}
             </div>
         </div>
     </section>

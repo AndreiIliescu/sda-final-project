@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block content %}
-    {% csrf_token %}
     {% comment %} MENU {% endcomment %}
     <section id="menu">
         <div class="menu__container">
@@ -28,18 +27,37 @@
                             <div class="card__footer">
                                 <span class="card__price">{{ product.price }} lei</span>
 
-                                <button class="wishlist-btn {% if product.id in user_favorites %}active{% endif %}" 
-                                        data-product-id="{{ product.id }}">
-                                    
-                                    <i class="{% if product.id in user_favorites %}ri-heart-fill{% else %}ri-heart-line{% endif %}"></i>
-                                </button>
+                                {% if user.is_authenticated %}
+                                    <form method="post" action="{% url 'add_favorite' product.pk %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="wishlist-btn {% if product.id in user_favorites %}active{% endif %}">
+                                            <i class="{% if product.id in user_favorites %}ri-heart-fill{% else %}ri-heart-line{% endif %}"></i>
+                                        </button>
+                                    </form>
+                                {% else %}
+                                    <a href="{% url 'login' %}" class="wishlist-btn">
+                                        <i class="ri-heart-line"></i>
+                                    </a>
+                                {% endif %}
 
-                                <button class="card__button add-to-cart-btn" 
-                                        value="{{ product.id }}" 
-                                        data-url="#">
-                                    <i class="ri-add-line"></i> Adaugă
-                                </button>
+                                <form method="post" action="{% url 'add_to_cart' product.pk %}" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="card__button">
+                                        <i class="ri-add-line"></i> Adaugă
+                                    </button>
+                                </form>
                             </div>
+
+                            {% if user.is_staff or user.is_superuser %}
+                                <div class="admin-menu-actions">
+                                    <a href="{% url 'edit_dish' product.pk %}" class="admin-link admin-edit">
+                                        <i class="ri-pencil-line"></i> Editează
+                                    </a>
+                                    <a href="{% url 'delete_dish' product.pk %}" class="admin-link admin-delete">
+                                        <i class="ri-delete-bin-line"></i> Șterge
+                                    </a>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                     {% empty %}

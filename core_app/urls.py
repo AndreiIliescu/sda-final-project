@@ -36,6 +36,14 @@ urlpatterns = [
     path("profil/", views.user_profile_page, name="profile"),
     path("editeaza-profil/<int:pk>/", views.ProfileEditView.as_view(), name="edit_profile"),
     
+    path("adauga-preparat/", views.ProductCreateView.as_view(), name="add_dish"),
+    path("editeaza-preparat/<int:pk>/", views.ProductUpdateView.as_view(), name="edit_dish"),
+    path("sterge-preparat/<int:pk>/", views.ProductDeleteView.as_view(), name="delete_dish"),
+    
+    path("favorite/<int:product_id>/", views.add_to_favorites, name="add_favorite"),
+    path("adauga-in-cos/<int:product_id>/", views.add_to_cart, name="add_to_cart"),
+    path("cos/", views.cart_page, name="cart"),
+    
     path("reclamatii/", views.complaints_and_notifcations_page, name="complaints"),
     path("plati-si-livrare/", views.payments_and_delivery_page, name="payments"),
     path("valori-nutritionale/", views.allergen_and_nutritional_values_page, name="allergens"),

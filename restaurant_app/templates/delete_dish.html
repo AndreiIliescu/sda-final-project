@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="delete-container">
+        <div class="delete-wrapper">
+            <div class="delete-header">
+                <i class="ri-error-warning-line"></i>
+                <h1>Șterge preparat</h1>
+            </div>
+
+            <div class="delete-content">
+                <p class="delete-question">Ești sigur că vrei să ștergi acest preparat?</p>
+                
+                <div class="dish-preview">
+                    {% if object.image %}
+                        <img src="{{ object.image.url }}" alt="{{ object.name }}" class="dish-preview-img">
+                    {% endif %}
+                    <h2 class="dish-preview-name">{{ object.name }}</h2>
+                    <p class="dish-preview-category">{{ object.category.name }}</p>
+                    <p class="dish-preview-price">{{ object.price }} lei</p>
+                </div>
+
+                <p class="delete-warning">Această acțiune nu poate fi anulată!</p>
+
+                <form method="post" class="delete-form">
+                    {% csrf_token %}
+                    <div class="delete-actions">
+                        <button type="submit" class="btn-delete">
+                            <i class="ri-delete-bin-line"></i> Șterge definitiv
+                        </button>
+                        <a href="{% url 'menu' %}" class="btn-cancel">
+                            <i class="ri-close-line"></i> Anulează
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section>
+        <h1>Coșul tău</h1>
+
+        {% if cart %}
+            {% for key, item in cart.items %}
+                {% if item.image %}
+                    <img src="{{ item.image }}" alt="{{ item.name }}" width="150px" />
+                {% endif %}
+
+                <h3>{{ item.name }}</h3>
+                <p>Preț: {{ item.price }} lei</p>
+                <p>Cantitate: {{ item.quantity }}</p>
+                <p>Subtotal: {{ item.price|floatformat:2 }} lei</p>
+
+                <hr />
+            {% endfor %}
+
+            <h2>Total: {{ total|floatformat:2 }} lei</h2>
+
+            <a href="#">Finalizează comanda</a>
+        {% else %}
+            <p>Coșul este gol</p>
+        {% endif %}
+    </section>
+{% endblock %}

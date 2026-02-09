@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from restaurant_app.models import ContactMessage, Reservation, Profile
+from restaurant_app.models import Category, ContactMessage, Reservation, Product, Profile
 
 
 class ContactForm(forms.ModelForm):
@@ -116,3 +116,59 @@ class RegisterProfileForm(UserCreationForm):
             )
             
         return user
+
+
+class ProductForm(forms.ModelForm):
+    new_category = forms.CharField(
+        required=False, 
+        label="Categorie nouă",
+        widget=forms.TextInput(attrs={'placeholder': 'Ex: Sushi Special'})
+    )
+    category_order = forms.IntegerField(
+        required=False,
+        label="Ordinea categoriei",
+        initial=0,
+        widget=forms.NumberInput(attrs={'placeholder': '0'})
+    )
+
+    class Meta:
+        model = Product
+        fields = ["category", "new_category", "category_order", "name", "description", "image", "price", "availability"]
+        labels = {
+            "category": "Categorie existentă",
+            "name": "Nume preparat",
+            "description": "Descriere",
+            "image": "Imagine",
+            "price": "Preț (lei)",
+            "availability": "Disponibil",
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance and self.instance.pk and self.instance.category:
+            self.fields['category_order'].initial = self.instance.category.order
+
+    def clean(self):
+        cleaned_data = super().clean()
+        category = cleaned_data.get("category")
+        new_category = cleaned_data.get("new_category")
+
+        if not category and not new_category:
+            raise forms.ValidationError("Selectează o categorie sau creează una nouă.")
+
+        return cleaned_data
+
+    def save(self, commit=True):
+        new_category = self.cleaned_data.get("new_category")
+        category_order = self.cleaned_data.get("category_order", 0)
+
+        if new_category:
+            category, created = Category.objects.get_or_create(name=new_category.strip())
+            category.order = category_order
+            category.save()
+            self.instance.category = category
+        elif self.instance.category and category_order is not None:
+            self.instance.category.order = category_order
+            self.instance.category.save()
+
+        return super().save(commit)
