@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="payment-container">
+        <div class="payment-wrapper">
+            <div class="payment-header">
+                <i class="ri-shield-check-line"></i>
+                <h1>Plată securizată</h1>
+            </div>
+
+            <div class="payment-content">
+                <div class="payment-left">
+                    <form method="post" class="payment-form">
+                        {% csrf_token %}
+
+                        <div class="form-section">
+                            <h2>Detalii card</h2>
+
+                            <div class="form-group">
+                                <label for="card_number">Număr card</label>
+                                <input type="text" id="card_number" name="card_number" class="card-input" 
+                                       placeholder="1234 5678 9012 3456" maxlength="19" required>
+                                <div class="card-icons">
+                                    <i class="ri-visa-line"></i>
+                                    <i class="ri-mastercard-line"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="card_name">Nume titular card</label>
+                                <input type="text" id="card_name" name="card_name" class="card-input" 
+                                       placeholder="NUME COMPLET" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="expiry_date">Data expirare</label>
+                                    <input type="text" id="expiry_date" name="expiry_date" class="card-input" 
+                                           placeholder="MM/YY" maxlength="5" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" name="cvv" class="card-input" 
+                                           placeholder="123" maxlength="3" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-pay">
+                            <i class="ri-bank-card-line"></i> Plasează comanda
+                        </button>
+
+                        <a href="{% url 'checkout' %}" class="btn-cancel-payment">
+                            <i class="ri-arrow-left-line"></i> Înapoi la checkout
+                        </a>
+                    </form>
+                </div>
+
+                <div class="payment-right">
+                    <div class="order-summary-payment">
+                        <h2>Rezumatul comenzii</h2>
+
+                        <div class="order-items-payment">
+                            {% for item in order_data.items %}
+                                <div class="payment-item">
+                                    <span>{{ item.quantity }}x {{ item.name }}</span>
+                                    <span>{{ item.price|floatformat:2 }} lei</span>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="payment-total">
+                            <span>Total de plată</span>
+                            <span class="total-amount">{{ order_data.total|floatformat:2 }} lei</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

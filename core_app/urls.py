@@ -47,6 +47,7 @@ urlpatterns = [
     path("actualizeaza-cantitate/<int:product_id>/", views.update_cart_quantity, name="update_cart_quantity"),
     path("sterge-din-cos/<int:product_id>/", views.remove_from_cart, name="remove_from_cart"),
     path("finalizeaza-comanda/", views.checkout_page, name="checkout"),
+    path("plata-card/", views.payment_page, name="payment"),
     path("comanda-finalizata/<int:order_id>/", views.order_success_page, name="order_success"),
     
     path("reclamatii/", views.complaints_and_notifcations_page, name="complaints"),

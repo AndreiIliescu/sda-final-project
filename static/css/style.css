@@ -2723,6 +2723,253 @@ body {
   }
 }
 
+/* =============== PAYMENT PAGE =============== */
+.payment-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 20px;
+}
+
+.payment-wrapper {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.payment-header {
+  background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+  padding: 2.5rem;
+  text-align: center;
+  color: #fff;
+}
+
+.payment-header i {
+  font-size: 3rem;
+  color: #28a745;
+  margin-bottom: 1rem;
+}
+
+.payment-header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.payment-header p {
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+.payment-content {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 3rem;
+  padding: 2.5rem;
+}
+
+.payment-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-form {
+  width: 100%;
+}
+
+.payment-form .form-section {
+  background: #fafaf7;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 2px solid #f0f0f0;
+  margin-bottom: 1.5rem;
+}
+
+.payment-form .form-section h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+  padding-left: 0.8rem;
+  border-left: 4px solid #bc002d;
+}
+
+.card-input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-family: "Courier New", monospace;
+  transition: border-color 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.card-input:focus {
+  outline: none;
+  border-color: #bc002d;
+}
+
+.card-icons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.card-icons i {
+  font-size: 2rem;
+  color: #666;
+}
+
+.cvv-info {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  cursor: help;
+  font-size: 1.2rem;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 1.2rem;
+}
+
+.btn-pay {
+  width: 100%;
+  padding: 1.2rem;
+  background: #28a745;
+  color: #fff;
+  border: 2px solid #28a745;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: inherit;
+  margin-bottom: 1rem;
+}
+
+.btn-pay:hover {
+  background: #218838;
+  border-color: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(40, 167, 69, 0.3);
+}
+
+.btn-cancel-payment {
+  width: 100%;
+  padding: 1rem;
+  background: transparent;
+  color: #1a1a1a;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-cancel-payment:hover {
+  background: #f0f0f0;
+  border-color: #999;
+}
+
+.payment-right {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.order-summary-payment {
+  background: #fafaf7;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 2px solid #f0f0f0;
+}
+
+.order-summary-payment h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #1a1a1a;
+}
+
+.summary-value {
+  font-weight: 600;
+  color: #1a1a1a;
+  text-align: right;
+}
+
+.order-items-payment {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.payment-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem;
+  background: #fff;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.payment-item span:last-child {
+  font-weight: 700;
+  color: #bc002d;
+}
+
+.payment-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 0;
+  border-top: 2px solid #1a1a1a;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.total-amount {
+  color: #28a745;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 992px) {
+  .payment-content {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-right {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .payment-wrapper {
+    margin: 1rem;
+  }
+
+  .payment-content {
+    padding: 1.5rem;
+  }
+
+  .payment-form .form-section {
+    padding: 1.5rem;
+  }
+}
+
 /* =============== SCROLL UP =============== */
 .scrollup {
   position: fixed;

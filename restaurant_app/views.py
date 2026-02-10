@@ -301,6 +301,55 @@ def generate_order_number():
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
 
 
+def payment_page(request):
+    if request.method == "POST":
+        order_data = request.session.get("pending_order")
+        
+        if not order_data:
+            messages.error(request, "Sesiunea ta a expirat. Te rugăm să plasezi din nou comanda.")
+            return redirect("cart")
+        
+        card_number = request.POST.get("card_number")
+        card_name = request.POST.get("card_name")
+        expiry_date = request.POST.get("expiry_date")
+        cvv = request.POST.get("cvv")
+        
+        order = Order.objects.create(
+            user=request.user if request.user.is_authenticated else None,
+            order_number=generate_order_number(),
+            full_name=order_data["name"],
+            email=order_data["email"],
+            phone=order_data["phone"],
+            address=order_data["address"],
+            city=order_data["city"],
+            district=order_data["district"],
+            zipcode=order_data["zipcode"],
+            payment_method="card",
+            total_price=order_data["total"],
+        )
+        
+        for item in order_data["items"]:
+            OrderItem.objects.create(
+                order=order,
+                product_name=item["name"],
+                product_price=item["price"],
+                quantity=item["quantity"],
+            )
+        
+        del request.session["pending_order"]
+        request.session.modified = True
+        
+        return redirect("order_success", order_id=order.id)
+    
+    order_data = request.session.get("pending_order")
+    
+    if not order_data:
+        messages.error(request, "Nu există date de comandă. Te rugăm să revii la coș.")
+        return redirect("cart")
+    
+    return render(request, "payment.html", {"order_data": order_data})
+
+
 def checkout_page(request):
     cart = request.session.get("cart", {})
     
@@ -326,9 +375,9 @@ def checkout_page(request):
                 item["subtotal"] = item["price"] * item["quantity"]
                 total += item["subtotal"]
                 cart_items.append({"id": product_id, "name": item["name"], "price": item["price"], "quantity": item["quantity"],
-                                   "subtotal": item["subtotal"], })
+                    "subtotal": item["subtotal"], })
             
-            return render(request, "checkout.html", {"cart_items": cart_items, "total": total, "initial_data": initial_data})
+            return render(request, "checkout.html", {"cart_items": cart_items,  "total": total, "initial_data": initial_data})
         
         email = request.POST.get("email")
         name = request.POST.get("name")
@@ -340,12 +389,24 @@ def checkout_page(request):
         payment_method = request.POST.get("payment")
         
         total = 0
-        for item in cart.values():
+        cart_items = []
+        for product_id, item in cart.items():
             total += item["price"] * item["quantity"]
+            cart_items.append({"name": item["name"], "price": item["price"], "quantity": item["quantity"], })
+        
+        if payment_method == "card":
+            request.session["pending_order"] = {"name": name, "email": email, "phone": phone, "address": address, "city": city,
+                "district": district, "zipcode": zipcode, "total": float(total), "items": cart_items, }
+            request.session.modified = True
+            
+            request.session["cart"] = {}
+            request.session.modified = True
+            
+            return redirect("payment")
         
         order = Order.objects.create(user=request.user if request.user.is_authenticated else None, order_number=generate_order_number(),
             full_name=name, email=email, phone=phone, address=address, city=city, district=district, zipcode=zipcode,
-            payment_method=payment_method, total_price=total, )
+            payment_method="cash", total_price=total, )
         
         for product_id, item in cart.items():
             OrderItem.objects.create(order=order, product_name=item["name"], product_price=item["price"], quantity=item["quantity"], )
