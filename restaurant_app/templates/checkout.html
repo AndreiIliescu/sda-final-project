@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="checkout-container">
+        <div class="checkout-wrapper">
+            <h1>Finalizează comanda</h1>
+
+            <form method="post" class="checkout-form">
+                {% csrf_token %}
+
+                <div class="checkout-content">
+                    <div class="checkout-left">
+                        <div class="form-section">
+                            <h2>Date de livrare</h2>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" class="checkout-input" 
+                                       value="{{ initial_data.email }}" placeholder="Email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Nume complet</label>
+                                <input type="text" id="name" name="name" class="checkout-input" 
+                                       value="{{ initial_data.name }}" placeholder="Nume Complet" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Telefon</label>
+                                <input type="tel" id="phone" name="phone" class="checkout-input" 
+                                       value="{{ initial_data.phone }}" placeholder="Nr. tel." required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="address">Adresă completă</label>
+                                <input type="text" id="address" name="address" class="checkout-input" 
+                                       value="{{ initial_data.address }}" placeholder="Strada, număr, Scară, Interfon, Apartament, Etaj" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city">Oraș</label>
+                                    <input type="text" id="city" name="city" class="checkout-input" 
+                                           value="{{ initial_data.city }}" placeholder="Oraș" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="district">Sector/Județ</label>
+                                    <input type="text" id="district" name="district" class="checkout-input" 
+                                           value="{{ initial_data.district }}" placeholder="Sector" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="zipcode">Cod poștal</label>
+                                <input type="text" id="zipcode" name="zipcode" class="checkout-input" 
+                                       placeholder="Cod Poștal" required>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h2>Metodă de plată</h2>
+                            
+                            <div class="payment-options">
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="cash" checked>
+                                    <div class="payment-card">
+                                        <i class="ri-money-dollar-circle-line"></i>
+                                        <span>Cash la livrare</span>
+                                    </div>
+                                </label>
+
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="card">
+                                    <div class="payment-card">
+                                        <i class="ri-bank-card-line"></i>
+                                        <span>Card online</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <label for="terms">
+                                    Sunt de acord cu <a href="{% url 'terms' %}" target="_blank">Termenii și Condițiile</a> și 
+                                    <a href="{% url 'privacy' %}" target="_blank">Politica de Confidențialitate (GDPR)</a>.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="checkout-right">
+                        <div class="order-summary">
+                            <h2>Rezumatul comenzii</h2>
+
+                            <div class="order-items">
+                                {% for item in cart_items %}
+                                    <div class="order-item">
+                                        <div class="item-info">
+                                            <span class="item-name">{{ item.name }}</span>
+                                            <span class="item-qty">x {{ item.quantity }}</span>
+                                        </div>
+                                        <span class="item-price">{{ item.subtotal|floatformat:2 }} lei</span>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="order-total">
+                                <span>Total de plată</span>
+                                <span class="total-price">{{ total|floatformat:2 }} lei</span>
+                            </div>
+
+                            <button type="submit" class="btn-place-order">
+                                <i class="ri-shopping-bag-line"></i>
+                                <span class="btn-text-cash">Plasează comanda</span>
+                                <span class="btn-text-card">Spre plată</span>
+                            </button>
+
+                            <a href="{% url 'cart' %}" class="btn-back-cart">
+                                <i class="ri-arrow-left-line"></i> Înapoi la coș
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

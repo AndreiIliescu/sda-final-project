@@ -41,8 +41,13 @@ urlpatterns = [
     path("sterge-preparat/<int:pk>/", views.ProductDeleteView.as_view(), name="delete_dish"),
     
     path("favorite/<int:product_id>/", views.add_to_favorites, name="add_favorite"),
+    
     path("adauga-in-cos/<int:product_id>/", views.add_to_cart, name="add_to_cart"),
     path("cos/", views.cart_page, name="cart"),
+    path("actualizeaza-cantitate/<int:product_id>/", views.update_cart_quantity, name="update_cart_quantity"),
+    path("sterge-din-cos/<int:product_id>/", views.remove_from_cart, name="remove_from_cart"),
+    path("finalizeaza-comanda/", views.checkout_page, name="checkout"),
+    path("comanda-finalizata/<int:order_id>/", views.order_success_page, name="order_success"),
     
     path("reclamatii/", views.complaints_and_notifcations_page, name="complaints"),
     path("plati-si-livrare/", views.payments_and_delivery_page, name="payments"),

@@ -1,3 +1,5 @@
+import random
+import string
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login, logout
@@ -9,7 +11,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 from restaurant_app.forms import ContactForm, ProductForm, RegisterProfileForm, ReservationForm
-from restaurant_app.models import Category, Product, Profile, Reservation
+from restaurant_app.models import Category, Order, OrderItem, Product, Profile, Reservation
 
 
 # Create your views here.
@@ -25,9 +27,7 @@ def menu_page(request):
     categories = Category.objects.prefetch_related(
         Prefetch("products", queryset=Product.objects.filter(availability=True))).order_by("order")
     
-    context = {
-        "categories": categories,
-    }
+    context = {"categories": categories, }
     
     return render(request, "menu.html", context)
 
@@ -50,7 +50,7 @@ def contact_us_page(request):
             Nume: {name}
             Email: {email_client}
             
-            -----------------------
+            ----------------------------------------------
             Subiect mail: {subject}
             
             Mesaj:
@@ -58,13 +58,8 @@ def contact_us_page(request):
             """
             
             try:
-                send_mail(
-                    subject=f"Contact Formular: {subject}",
-                    message=complet_message,
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    recipient_list=[settings.EMAIL_HOST_USER],
-                    fail_silently=False,
-                )
+                send_mail(subject=f"Contact Formular: {subject}", message=complet_message, from_email=settings.DEFAULT_FROM_EMAIL, 
+                          recipient_list=[settings.EMAIL_HOST_USER], fail_silently=False, )
                 
                 messages.success(request, "Mesajul a fost trimis și salvat cu succes!")
                 return redirect("contact_us")
@@ -89,11 +84,7 @@ def book_reservation_page(request):
             user_phone = ""
             user_name = f"{request.user.first_name} {request.user.last_name}".strip()
         
-        initial_data = {
-            "full_name": user_name,
-            "email": request.user.email,
-            "phone": user_phone
-        }
+        initial_data = {"full_name": user_name, "email": request.user.email, "phone": user_phone}
 
     if request.method == "POST":
         form = ReservationForm(request.POST)
@@ -109,10 +100,7 @@ def book_reservation_page(request):
                 if request.user.is_authenticated:
                     reservation.user = request.user
                 
-                existing_count = Reservation.objects.filter(
-                    date=reservation.date, 
-                    time_slot=reservation.time_slot
-                ).count()
+                existing_count = Reservation.objects.filter(date=reservation.date, time_slot=reservation.time_slot).count()
                 
                 if existing_count >= 5:
                     messages.error(request, "Ne pare rău, dar acest interval orar este deja complet ocupat.")
@@ -246,12 +234,8 @@ def add_to_cart(request, product_id):
         if str(product_id) in cart:
             cart[str(product_id)]["quantity"] += 1
         else:
-            cart[str(product_id)] = {
-                "name": product.name,
-                "price": float(product.price),
-                "image": product.image.url if product.image else "",
-                "quantity": 1,
-            }
+            cart[str(product_id)] = {"name": product.name, "price": float(product.price),
+                "image": product.image.url if product.image else "", "quantity": 1, }
 
         request.session["cart"] = cart
         request.session.modified = True
@@ -259,13 +243,132 @@ def add_to_cart(request, product_id):
     return redirect("menu")
 
 
+def update_cart_quantity(request, product_id):
+    if request.method == "POST":
+        cart = request.session.get("cart", {})
+        action = request.POST.get("action")
+        
+        if str(product_id) in cart:
+            if action == "increase":
+                cart[str(product_id)]["quantity"] += 1
+                messages.success(request, f"Cantitate actualizată: {cart[str(product_id)]['quantity']}")
+            elif action == "decrease":
+                if cart[str(product_id)]["quantity"] > 1:
+                    cart[str(product_id)]["quantity"] -= 1
+                    messages.success(request, f"Cantitate actualizată: {cart[str(product_id)]['quantity']}")
+                else:
+                    product_name = cart[str(product_id)]["name"]
+                    del cart[str(product_id)]
+                    messages.success(request, f"{product_name} a fost șters din coș (cantitate 0).")
+        
+        request.session["cart"] = cart
+        request.session.modified = True
+    
+    return redirect("cart")
+
+
+def remove_from_cart(request, product_id):
+    if request.method == "POST":
+        cart = request.session.get("cart", {})
+        
+        if str(product_id) in cart:
+            product_name = cart[str(product_id)]["name"]
+            del cart[str(product_id)]
+            messages.success(request, f"{product_name} a fost șters din coș.")
+        
+        request.session["cart"] = cart
+        request.session.modified = True
+    
+    return redirect("cart")
+
+
 def cart_page(request):
     cart = request.session.get("cart", {})
     total = 0
+    total_items = 0
 
     for item in cart.values():
-        total += item["price"] * item["quantity"]
+        item["subtotal"] = item["price"] * item["quantity"]
+        total += item["subtotal"]
+        total_items += item["quantity"]
 
-    context = {"cart": cart, "total": total,}
+    context = {"cart": cart, "total": total, "total_items": total_items, }
 
     return render(request, "cart.html", context)
+
+
+def generate_order_number():
+    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+
+
+def checkout_page(request):
+    cart = request.session.get("cart", {})
+    
+    if not cart:
+        messages.error(request, "Coșul tău este gol!")
+        return redirect("cart")
+    
+    initial_data = {}
+    if request.user.is_authenticated and hasattr(request.user, 'profile'):
+        initial_data = {"email": request.user.email, "name": request.user.profile.name or "", "phone": request.user.profile.phone or "",
+            "address": request.user.profile.home_address or "", "city": request.user.profile.city or "",
+            "district": request.user.profile.district or "", }
+    
+    if request.method == "POST":
+        terms_accepted = request.POST.get("terms")
+        
+        if not terms_accepted:
+            messages.error(request, "Trebuie să accepți Termenii și Condițiile pentru a continua.")
+            
+            total = 0
+            cart_items = []
+            for product_id, item in cart.items():
+                item["subtotal"] = item["price"] * item["quantity"]
+                total += item["subtotal"]
+                cart_items.append({"id": product_id, "name": item["name"], "price": item["price"], "quantity": item["quantity"],
+                                   "subtotal": item["subtotal"], })
+            
+            return render(request, "checkout.html", {"cart_items": cart_items, "total": total, "initial_data": initial_data})
+        
+        email = request.POST.get("email")
+        name = request.POST.get("name")
+        phone = request.POST.get("phone")
+        address = request.POST.get("address")
+        city = request.POST.get("city")
+        district = request.POST.get("district")
+        zipcode = request.POST.get("zipcode")
+        payment_method = request.POST.get("payment")
+        
+        total = 0
+        for item in cart.values():
+            total += item["price"] * item["quantity"]
+        
+        order = Order.objects.create(user=request.user if request.user.is_authenticated else None, order_number=generate_order_number(),
+            full_name=name, email=email, phone=phone, address=address, city=city, district=district, zipcode=zipcode,
+            payment_method=payment_method, total_price=total, )
+        
+        for product_id, item in cart.items():
+            OrderItem.objects.create(order=order, product_name=item["name"], product_price=item["price"], quantity=item["quantity"], )
+        
+        request.session["cart"] = {}
+        request.session.modified = True
+        
+        return redirect("order_success", order_id=order.id)
+    
+    total = 0
+    cart_items = []
+    
+    for product_id, item in cart.items():
+        item["subtotal"] = item["price"] * item["quantity"]
+        total += item["subtotal"]
+        cart_items.append({"id": product_id, "name": item["name"], "price": item["price"], "quantity": item["quantity"],
+                           "subtotal": item["subtotal"], })
+    
+    context = {"cart_items": cart_items, "total": total, "initial_data": initial_data, }
+    
+    return render(request, "checkout.html", context)
+
+
+def order_success_page(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    return render(request, "order_success.html", {"order": order})

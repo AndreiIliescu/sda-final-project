@@ -1,28 +1,103 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-    <section>
-        <h1>Coșul tău</h1>
+    <section class="cart-container">
+        <div class="cart-wrapper">
+            <h1>Coșul tău de cumpărături</h1>
 
-        {% if cart %}
-            {% for key, item in cart.items %}
-                {% if item.image %}
-                    <img src="{{ item.image }}" alt="{{ item.name }}" width="150px" />
-                {% endif %}
+            {% if cart %}
+                <div class="cart-items">
+                    {% for key, item in cart.items %}
+                        <div class="cart-item">
+                            <div class="item-image">
+                                {% if item.image %}
+                                    <img src="{{ item.image }}" alt="{{ item.name }}" />
+                                {% else %}
+                                    <div class="no-image">
+                                        <i class="ri-image-line"></i>
+                                    </div>
+                                {% endif %}
+                            </div>
 
-                <h3>{{ item.name }}</h3>
-                <p>Preț: {{ item.price }} lei</p>
-                <p>Cantitate: {{ item.quantity }}</p>
-                <p>Subtotal: {{ item.price|floatformat:2 }} lei</p>
+                            <div class="item-details">
+                                <h3 class="item-name">{{ item.name }}</h3>
+                                <p class="item-price">{{ item.price }} lei / bucată</p>
+                            </div>
 
-                <hr />
-            {% endfor %}
+                            <div class="item-quantity">
+                                <p class="quantity-label">Cantitate</p>
+                                <div class="quantity-controls">
+                                    <form method="post" action="{% url 'update_cart_quantity' key %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="decrease">
+                                        <button type="submit" class="qty-btn">
+                                            <i class="ri-subtract-line"></i>
+                                        </button>
+                                    </form>
+                                    
+                                    <span class="quantity-value">{{ item.quantity }}</span>
+                                    
+                                    <form method="post" action="{% url 'update_cart_quantity' key %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="increase">
+                                        <button type="submit" class="qty-btn">
+                                            <i class="ri-add-line"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
 
-            <h2>Total: {{ total|floatformat:2 }} lei</h2>
+                            <div class="item-subtotal">
+                                <p class="subtotal-label">Subtotal</p>
+                                <p class="subtotal-value">{{ item.subtotal|floatformat:2 }} lei</p>
+                            </div>
 
-            <a href="#">Finalizează comanda</a>
-        {% else %}
-            <p>Coșul este gol</p>
-        {% endif %}
+                            <div class="item-actions">
+                                <form method="post" action="{% url 'remove_from_cart' key %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn-remove">
+                                        <i class="ri-delete-bin-line"></i> Șterge
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="cart-summary">
+                    <div class="summary-content">
+                        <h2>Rezumatul comenzii</h2>
+                        <div class="summary-row">
+                            <span>Număr produse:</span>
+                            <span>{{ cart|length }}</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Cantitate totală:</span>
+                            <span>{{ total_items }}</span>
+                        </div>
+                        <div class="summary-row total-row">
+                            <span>Total de plată:</span>
+                            <span class="total-price">{{ total|floatformat:2 }} lei</span>
+                        </div>
+                        <a href="{% url 'checkout' %}" class="btn-checkout">
+                            <i class="ri-shopping-bag-line"></i> Finalizează comanda
+                        </a>
+                        <a href="{% url 'menu' %}" class="btn-continue">
+                            <i class="ri-arrow-left-line"></i> Continuă cumpărăturile
+                        </a>
+                    </div>
+                </div>
+
+            {% else %}
+                <div class="empty-cart">
+                    <i class="ri-shopping-cart-line"></i>
+                    <p>Coșul tău este gol</p>
+                    <a href="{% url 'menu' %}" class="btn-continue">
+                        <i class="ri-restaurant-line"></i> Vezi meniul
+                    </a>
+                </div>
+            {% endif %}
+        </div>
     </section>
 {% endblock %}
