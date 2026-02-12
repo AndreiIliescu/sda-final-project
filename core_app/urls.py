@@ -34,6 +34,7 @@ urlpatterns = [
     path("deconectare/", views.logout_page, name="logout"),
     
     path("profil/", views.user_profile_page, name="profile"),
+    path("comanda-din-nou/<int:order_id>/", views.reorder, name="reorder"),
     path("editeaza-profil/<int:pk>/", views.ProfileEditView.as_view(), name="edit_profile"),
     
     path("adauga-preparat/", views.ProductCreateView.as_view(), name="add_dish"),

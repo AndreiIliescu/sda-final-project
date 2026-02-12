@@ -6,9 +6,6 @@
         {% if user.is_authenticated %}
             <div class="profile-wrapper">
                 <div class="profile-header">
-                    <div class="profile-avatar">
-                        <i class="ri-user-line"></i>
-                    </div>
                     <h1>{{user.username}}</h1>
                 </div>
 
@@ -97,6 +94,50 @@
                         </div>
                     {% else %}
                         <p class="no-favorites">Nu ai produse favorite momentan.</p>
+                    {% endif %}
+                </div>
+
+                <div class="profile-section">
+                    <h2>Istoric comenzi</h2>
+                    
+                    {% if orders %}
+                        <div class="orders-list">
+                            {% for order in orders %}
+                                <div class="order-card">
+                                    <div class="order-header">
+                                        <div class="order-info">
+                                            <span class="order-number">#{{ order.order_number }}</span>
+                                            <span class="order-date">{{ order.created_at|date:"d.m.Y H:i" }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="order-items">
+                                        {% for item in order.items.all %}
+                                            <div class="order-item">
+                                                <span class="item-qty">{{ item.quantity }}x</span>
+                                                <span class="item-name">{{ item.product_name }}</span>
+                                                <span class="item-price">{{ item.get_total_price|floatformat:2 }} lei</span>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+
+                                    <div class="order-footer">
+                                        <div class="order-total">
+                                            <span>Total:</span>
+                                            <span class="total-value">{{ order.total_price|floatformat:2 }} lei</span>
+                                        </div>
+                                        <form method="post" action="{% url 'reorder' order.id %}" style="display: inline;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn-reorder">
+                                                <i class="ri-refresh-line"></i> Comandă din nou
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="no-orders">Nu ai comenzi anterioare.</p>
                     {% endif %}
                 </div>
             </div>

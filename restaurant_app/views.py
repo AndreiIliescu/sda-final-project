@@ -179,7 +179,8 @@ def logout_page(request):
 
 @login_required
 def user_profile_page(request):
-    return render(request, "user_profile.html")
+    orders = Order.objects.filter(user=request.user).prefetch_related('items')[:5]
+    return render(request, "user_profile.html", {"orders": orders})
 
 
 class ProfileEditView(UpdateView):
@@ -433,3 +434,37 @@ def checkout_page(request):
 def order_success_page(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     return render(request, "order_success.html", {"order": order})
+
+
+@login_required
+def reorder(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    cart = request.session.get("cart", {})
+    
+    added_items = []
+    unavailable_items = []
+    
+    for order_item in order.items.all():
+        try:
+            product = Product.objects.get(name=order_item.product_name, availability=True)
+            
+            if str(product.id) in cart:
+                cart[str(product.id)]["quantity"] += order_item.quantity
+            else:
+                cart[str(product.id)] = {"name": product.name, "price": float(product.price), "image": product.image.url if product.image else "",
+                    "quantity": order_item.quantity, }
+            
+            added_items.append(product.name)
+        except Product.DoesNotExist:
+            unavailable_items.append(order_item.product_name)
+    
+    request.session["cart"] = cart
+    request.session.modified = True
+    
+    if added_items:
+        messages.success(request, f"Produsele au fost adăugate în coș: {', '.join(added_items)}")
+    
+    if unavailable_items:
+        messages.warning(request, f"Produse indisponibile: {', '.join(unavailable_items)}")
+    
+    return redirect("cart")
