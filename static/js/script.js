@@ -1,4 +1,4 @@
-/* =============== SCROLL UP =============== */
+/* =============== Scroll in Sus =============== */
 const scrollUp = () => {
   const scrollUpBtn = document.getElementById("scroll-up");
   if (scrollUpBtn) {

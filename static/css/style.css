@@ -15,7 +15,7 @@ body {
   box-sizing: border-box;
 }
 
-/* =============== HEADER + NAV BAR =============== */
+/* =============== Header + Nav Bar =============== */
 #header {
   position: sticky;
   top: 0;
@@ -80,79 +80,7 @@ body {
   color: #bc002d;
 }
 
-/* li.user-menu {
-  display: flex !important;
-  align-items: center;
-  gap: 15px;
-}
-
-.username {
-  color: #1a1a1a;
-  font-weight: 700;
-  font-size: 16px;
-  position: relative;
-}
-
-.username::after {
-  content: "|";
-  margin-left: 12px;
-  color: #ccc;
-  font-weight: 400;
-}
-
-.logout-form {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-}
-
-.logout-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: "Noto Sans JP", sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: #1a1a1a;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 0;
-  position: relative;
-  transition: none;
-}
-
-.logout-btn .logout-text {
-  position: relative;
-  padding: 5px 0;
-}
-
-.logout-btn .logout-text::after {
-  content: "";
-  width: 0%;
-  height: 2px;
-  background: #bc002d;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  transition: 0.3s;
-  border-radius: 2px;
-}
-
-.logout-btn:hover .logout-text::after {
-  width: 50%;
-}
-
-.logout-btn:hover {
-  color: #1a1a1a !important;
-}
-
-.logout-btn i {
-  font-size: 18px;
-} */
-
-/* =============== HOME =============== */
+/* =============== Pagina Acasa =============== */
 .home__container {
   max-width: 1200px;
   margin: 0 auto;
@@ -273,7 +201,7 @@ body {
   }
 }
 
-/* =============== HOME - FOOD CAROUSEL =============== */
+/* =============== Pagina Acasa - Carusel preparate =============== */
 .carousel {
   margin: 2rem auto;
   width: 90%;
@@ -337,7 +265,7 @@ body {
   }
 }
 
-/* =============== HOME - REVIEW CAROUSEL =============== */
+/* =============== Pagina Acasa - Carusel review-uri =============== */
 .reviews__carousel {
   margin: 2rem auto 5rem auto;
   width: 100%;
@@ -432,7 +360,7 @@ body {
   animation-play-state: paused;
 }
 
-/*========== ABOUT US SECTION ==========*/
+/*========== Pagina Despre Noi ==========*/
 .about__wrapper {
   max-width: 1200px;
   margin: 0 auto;
@@ -516,7 +444,7 @@ body {
   }
 }
 
-/* =============== MENU =============== */
+/* =============== Pagina Meniului =============== */
 #menu {
   padding: 4rem 0;
   max-width: 1200px;
@@ -650,7 +578,7 @@ body {
   }
 }
 
-/* =============== ADMIN MENU ACTIONS =============== */
+/* =============== Pagina Meniului - butoane de actiune admin =============== */
 .admin-menu-actions {
   display: flex;
   gap: 0.6rem;
@@ -708,7 +636,7 @@ body {
   }
 }
 
-/* =============== ADD TO FAVORITE MENU BUTTON =============== */
+/* =============== Pagina Meniului - butonul adauga la favorite =============== */
 .card__footer {
   display: flex;
   align-items: center;
@@ -742,7 +670,7 @@ body {
   background-color: #a00026;
 }
 
-/* =============== CONTACT =============== */
+/* =============== Pagina de Contact =============== */
 .contact__container {
   max-width: 1200px;
   margin: 0 auto;
@@ -1008,7 +936,7 @@ body {
   line-height: 1.6;
 }
 
-/* =============== CONTACT MAP CARD =============== */
+/* =============== Pagina de Contact - Harta =============== */
 .contact__map-section {
   display: flex;
   justify-content: center;
@@ -1059,7 +987,7 @@ body {
   }
 }
 
-/* =============== FOOTER =============== */
+/* =============== Footer =============== */
 #footer {
   background-color: #fff;
   border-top: 1px solid #e0e0e0;
@@ -1201,7 +1129,7 @@ body {
   color: #666;
 }
 
-/* =============== FOOTER PAGES =============== */
+/* =============== Pagini din Footer =============== */
 #complaints,
 #payments,
 #allergen,
@@ -1238,7 +1166,7 @@ body {
   color: #bc002d;
 }
 
-/*=============== LOG IN / REGISTER ===============*/
+/*=============== Paginile Log In / Register ===============*/
 .auth-container {
   display: flex;
   justify-content: center;
@@ -1359,7 +1287,7 @@ body {
   background-color: #fff8f8;
 }
 
-/* =============== USER PROFILE PAGE =============== */
+/* =============== Pagina de profil a userului =============== */
 .profile-container {
   max-width: 900px;
   margin: 0 auto;
@@ -1636,7 +1564,7 @@ body {
   }
 }
 
-/*=============== CHECKBOX STYLING ===============*/
+/*=============== Design Checkbox ===============*/
 .auth-legal-checks {
   margin: 1.5rem 0;
   display: flex;
@@ -1683,7 +1611,7 @@ body {
   text-decoration: underline;
 }
 
-/* =============== DELETE DISH PAGE =============== */
+/* =============== Pagina de Stergere a unui Preparat =============== */
 .delete-container {
   display: flex;
   justify-content: center;
@@ -1858,7 +1786,7 @@ body {
   }
 }
 
-/* =============== CART PAGE =============== */
+/* =============== Pagina Cosului de Cumparaturi =============== */
 .cart-container {
   max-width: 1100px;
   margin: 0 auto;
@@ -2197,7 +2125,7 @@ body {
   }
 }
 
-/* =============== CHECKOUT PAGE =============== */
+/* =============== Pagina de Finalizare a Comenzii =============== */
 .checkout-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -2515,7 +2443,7 @@ body {
   }
 }
 
-/* =============== ORDER SUCCESS PAGE =============== */
+/* =============== Pagina Comanda Plasata cu Succes =============== */
 .success-container {
   max-width: 800px;
   margin: 0 auto;
@@ -2709,7 +2637,7 @@ body {
   }
 }
 
-/* =============== PAYMENT PAGE =============== */
+/* =============== Pagina de Plata =============== */
 .payment-container {
   max-width: 1100px;
   margin: 0 auto;
@@ -2956,7 +2884,7 @@ body {
   }
 }
 
-/* =============== ORDER HISTORY IN PROFILE =============== */
+/* =============== Pagina profilului userului - Istoricul Comenzilor =============== */
 .orders-list {
   display: flex;
   flex-direction: column;
@@ -3114,7 +3042,7 @@ body {
   }
 }
 
-/* =============== SCROLL UP =============== */
+/* =============== Scroll in Sus =============== */
 .scrollup {
   position: fixed;
   right: 1rem;
@@ -3146,7 +3074,7 @@ body {
   bottom: 3rem;
 }
 
-/* =============== SCROLLBAR =============== */
+/* =============== Bara de Navigare =============== */
 ::-webkit-scrollbar {
   width: 0.6rem;
   background-color: #f0f0eb;
