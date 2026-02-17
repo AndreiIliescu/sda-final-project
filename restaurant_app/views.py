@@ -107,7 +107,13 @@ def book_reservation_page(request):
                 else:
                     reservation.save()
                     try:
-                        send_mail(reservation)
+                        send_mail(
+                            subject=f"Rezervare noua: {reservation.full_name}",
+                            message=f"Data: {reservation.date}, Ora: {reservation.time_slot}, Persoane: {reservation.guests}",
+                            from_email=settings.DEFAULT_FROM_EMAIL,
+                            recipient_list=[settings.EMAIL_HOST_USER],
+                            fail_silently=False,
+                        )
                     except Exception as e:
                         print(f"Eroare la trimitere email: {e}")
                     return render(request, "reservation_success.html", {"reservation": reservation})
