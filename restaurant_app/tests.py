@@ -6,9 +6,7 @@ from restaurant_app.forms import ContactForm, ReservationForm, RegisterProfileFo
 from restaurant_app.models import Category, ContactMessage, Order, OrderItem, Product, Profile, Reservation
 
 
-# ==============================================================================
-# MODEL TESTS
-# ==============================================================================
+# =============== Testare Modele =============== #
 
 class CategoryModelTest(TestCase):
     def setUp(self):
@@ -178,9 +176,7 @@ class OrderItemModelTest(TestCase):
         self.assertEqual(str(self.item), "2x Salmon Roll")
 
 
-# ==============================================================================
-# FORM TESTS
-# ==============================================================================
+# =============== Testare Formulare =============== #
 
 class ContactFormTest(TestCase):
     def test_valid_form(self):
@@ -282,9 +278,7 @@ class RegisterProfileFormTest(TestCase):
         self.assertFalse(form.is_valid())
 
 
-# ==============================================================================
-# VIEW TESTS - PAGINI PUBLICE
-# ==============================================================================
+# =============== Testare View-uri - Pagini Website =============== #
 
 class HomeViewTest(TestCase):
     def test_home_page_returns_200(self):
@@ -380,9 +374,7 @@ class BookReservationViewTest(TestCase):
         self.assertEqual(Reservation.objects.count(), 5)
 
 
-# ==============================================================================
-# VIEW TESTS - PAGINI FOOTER
-# ==============================================================================
+# =============== Testare View-uri - Pagini Footer =============== #
 
 class FooterPagesViewTest(TestCase):
     def test_complaints_page_returns_200(self):
@@ -418,9 +410,7 @@ class FooterPagesViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-# ==============================================================================
-# VIEW TESTS - AUTENTIFICARE
-# ==============================================================================
+# =============== Testare View-uri - Log In/Register =============== #
 
 class RegisterViewTest(TestCase):
     def test_register_page_returns_200(self):
@@ -492,9 +482,7 @@ class LogoutViewTest(TestCase):
         self.assertRedirects(response, reverse("home"))
 
 
-# ==============================================================================
-# VIEW TESTS - PROFIL (PROTECTED)
-# ==============================================================================
+# =============== Testare View-uri - Profil Utilizator =============== #
 
 class ProfileViewTest(TestCase):
     def setUp(self):
@@ -516,9 +504,7 @@ class ProfileViewTest(TestCase):
         self.assertTemplateUsed(response, "user_profile.html")
 
 
-# ==============================================================================
-# VIEW TESTS - COS
-# ==============================================================================
+# =============== Testare View-uri - Cos de Cumparaturi =============== #
 
 class CartViewTest(TestCase):
     def test_empty_cart_returns_200(self):
@@ -570,9 +556,7 @@ class CartViewTest(TestCase):
         self.assertNotIn(str(product.id), cart)
 
 
-# ==============================================================================
-# VIEW TESTS - CHECKOUT
-# ==============================================================================
+# =============== Testare View-uri - Fializare Comanda =============== #
 
 class CheckoutViewTest(TestCase):
     def test_checkout_with_empty_cart_redirects(self):
@@ -587,9 +571,7 @@ class CheckoutViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-# ==============================================================================
-# VIEW TESTS - COMENZI
-# ==============================================================================
+# =============== Testare View-uri - Comanda Plasata cu Succes ===============
 
 class OrderSuccessViewTest(TestCase):
     def setUp(self):
@@ -620,9 +602,7 @@ class OrderSuccessViewTest(TestCase):
         self.assertEqual(response.status_code, 404)
 
 
-# ==============================================================================
-# VIEW TESTS - FAVORITE
-# ==============================================================================
+# =============== Testare View-uri - Produse Favorite =============== #
 
 class FavoritesViewTest(TestCase):
     def setUp(self):
@@ -657,9 +637,7 @@ class FavoritesViewTest(TestCase):
         self.assertNotIn(self.product, self.profile.favorites.all())
 
 
-# ==============================================================================
-# URL TESTS
-# ==============================================================================
+# =============== Testare URL-uri =============== #
 
 class URLTest(TestCase):
     def test_home_url_resolves(self):
