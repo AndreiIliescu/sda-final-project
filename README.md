@@ -116,7 +116,7 @@ cd sda-final-project
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate        # macOS / Linux
+source .venv/bin/activate          # macOS / Linux
 .\.venv\Scripts\activate           # Windows - CMD
 .\.venv\Scripts\activate.ps1       # Windows - PowerShell
 ```
