@@ -83,6 +83,10 @@ Nova Sushi is a Django-based web application built as a final project for a full
 
 ![Reservation Form](docs/screenshots/reservation_form.webp)
 
+**Card Payment Page**
+
+![Card Payment Page](docs/screenshots/card_payment_page.webp)
+
 **Admin Panel**
 
 ![Admin Panel](docs/screenshots/admin_panel.webp)
