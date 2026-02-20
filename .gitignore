@@ -3,11 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.so
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+.installed.cfg
 .Python
-.env/
-env/
-venv/
-.venv/
 pip-log.txt
 pip-delete-this-directory.txt
 /build/
@@ -21,11 +22,6 @@ pip-delete-this-directory.txt
 /sdist/
 /var/
 /wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-*.pyo
-*.pyd
 
 # =============== Django =============== #
 *.log
@@ -37,22 +33,23 @@ staticfiles/
 static_root/
 # static/
 
-# =============== Configurații Sensibile (Environment Variables) =============== #
+# =============== Configuratii Sensibile (Environment Variables) =============== #
 .env
 .env.*
 !.env.example
-.venv
+.venv/
+env/
+venv/
 env.ini
 .flaskenv
 secrets.json
 *.key
 *.pem
 
-# =============== Testare și Acoperire =============== #
+# =============== Testare si Acoperire =============== #
 htmlcov/
 .tox/
 .nox/
-.nosetests
 .coverage
 .coverage.*
 .cache
@@ -66,8 +63,7 @@ coverage.xml
 dmypy.json
 .ruff_cache/
 
-
-# =============== IDE-uri și Editoare =============== #
+# =============== IDE-uri si Editoare =============== #
 .vscode/
 .idea/
 *.swp
@@ -78,24 +74,26 @@ Thumbs.db
 *.sublime-project
 *.sublime-workspace
 
-# =============== Node/Frontend (dacă folosești Webpack sau Tailwind) =============== #
+# =============== Node/Frontend =============== #
 node_modules/
 npm-debug.log
 yarn-error.log
 yarn.log
 package-lock.json
 yarn.lock
+.pnp/
+.pnp.js
+.npm/
 
 # =============== Celery =============== #
 celerybeat-schedule
 celerybeat.pid
 
-# =============== Backup și Temporare =============== #
+# =============== Backup si Temporare =============== #
 *.bak
 *.tmp
 *.temp
-*~
 
 # =============== Docker =============== #
-docker-compose.override.yml
 .dockerignore
+docker-compose.override.yml
