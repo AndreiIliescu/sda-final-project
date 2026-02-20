@@ -10,7 +10,7 @@
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 ![Tests](https://img.shields.io/badge/Tests-PyTest-orange?logo=pytest&logoColor=white)
 
-A full-stack web application for a sushi restaurant. Users can create accounts, manage their profiles, place orders, make reservations, and contact the restaurant. Admins manage the menu directly from the Django admin panel.
+A full-stack web application for a sushi restaurant. Users can create accounts, manage their profiles, place orders, make reservations, and contact the restaurant. Admins can create, update, and delete menu items using custom-built management pages.
 
 ---
 
