@@ -57,7 +57,7 @@ Nova Sushi is a Django-based web application built as a final project for a full
 - Django 6.0.2
 - SQLite
 - HTML5, CSS3, JavaScript
-- PyTest
+- UnitTest
 
 ---
 
