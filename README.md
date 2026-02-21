@@ -1,7 +1,5 @@
 # 🍣 Nova Sushi Restaurant Web App
 
-![Logo](docs/screenshots/logo.webp)
-
 ---
 
 ![Python](https://img.shields.io/badge/Python-3.14.2-blue?logo=python&logoColor=white)
