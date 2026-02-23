@@ -510,7 +510,7 @@ def delete_account_page(request):
         random_password = ''.join(random.choices(string.ascii_letters + string.digits + string.punctuation, k=10))
         
         user.username = f"deleted_user_{new_deleted_number}"
-        user.email = "deleted_user@nova.sushi.com"
+        user.email = f"deleted_user_{new_deleted_number}@nova_sushi.com"
         user.set_password(random_password)
         user.save()
         
