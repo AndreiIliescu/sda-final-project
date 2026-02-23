@@ -36,6 +36,9 @@ urlpatterns = [
     path("profil/", views.user_profile_page, name="profile"),
     path("comanda-din-nou/<int:order_id>/", views.reorder, name="reorder"),
     path("editeaza-profil/<int:pk>/", views.ProfileEditView.as_view(), name="edit_profile"),
+    path("schimba-parola/", views.change_password_page, name="change_password"),
+    path("confirma-stergere-cont/", views.delete_account_confirm_page, name="delete_account_confirm"),
+    path("sterge-cont/", views.delete_account_page, name="delete_account"),
     
     path("adauga-preparat/", views.ProductCreateView.as_view(), name="add_dish"),
     path("editeaza-preparat/<int:pk>/", views.ProductUpdateView.as_view(), name="edit_dish"),

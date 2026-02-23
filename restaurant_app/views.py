@@ -8,9 +8,11 @@ from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
 from django.db.models import Prefetch
 from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
-from restaurant_app.forms import ContactForm, ProductForm, RegisterProfileForm, ReservationForm
+from restaurant_app.forms import ContactForm, ProductForm, RegisterProfileForm, ReservationForm, PasswordChangeForm
 from restaurant_app.models import Category, Order, OrderItem, Product, Profile, Reservation
 
 
@@ -474,3 +476,52 @@ def reorder(request, order_id):
         messages.warning(request, f"Produse indisponibile: {', '.join(unavailable_items)}")
     
     return redirect("cart")
+
+
+@login_required
+def change_password_page(request):
+    if request.method == "POST":
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Parola ta a fost schimbată cu succes! Te rugăm să te autentifici din nou.")
+            logout(request)
+            return redirect("login")
+    else:
+        form = PasswordChangeForm(user=request.user)
+    
+    return render(request, "change_password.html", {"form": form})
+
+
+@login_required
+def delete_account_confirm_page(request):
+    return render(request, "delete_account_confirm.html")
+
+
+@login_required
+def delete_account_page(request):
+    if request.method == "POST":
+        user = request.user
+        
+        deleted_count = User.objects.filter(username__startswith="deleted_user_").count()
+        new_deleted_number = deleted_count + 1
+        
+        random_password = ''.join(random.choices(string.ascii_letters + string.digits + string.punctuation, k=10))
+        
+        user.username = f"deleted_user_{new_deleted_number}"
+        user.email = "deleted_user@nova.sushi.com"
+        user.set_password(random_password)
+        user.save()
+        
+        if hasattr(user, 'profile'):
+            user.profile.username = user.username
+            user.profile.email = user.email
+            user.profile.phone = ""
+            user.profile.save()
+        
+        logout(request)
+        messages.success(request, "Contul tău a fost șters cu succes. Îți mulțumim că ai fost parte din comunitatea noastră!")
+        return redirect("home")
+    
+    return redirect("delete_account_confirm")

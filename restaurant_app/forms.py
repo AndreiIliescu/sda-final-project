@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 from restaurant_app.models import Category, ContactMessage, Reservation, Product, Profile
 
 
@@ -102,3 +103,39 @@ class ProductForm(forms.ModelForm):
             self.instance.category.save()
 
         return super().save(commit)
+
+
+class PasswordChangeForm(forms.Form):
+    old_password = forms.CharField(
+        label="Parola veche", widget=forms.PasswordInput(attrs={'placeholder': 'Introdu parola actuală'}), required=True)
+    new_password1 = forms.CharField(
+        label="Parolă nouă", widget=forms.PasswordInput(attrs={'placeholder': 'Introdu noua parolă'}), required=True)
+    new_password2 = forms.CharField(
+        label="Confirmă parola nouă", widget=forms.PasswordInput(attrs={'placeholder': 'Confirmă noua parolă'}), required=True)
+    
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super().__init__(*args, **kwargs)
+    
+    def clean_old_password(self):
+        old_password = self.cleaned_data.get('old_password')
+        if not self.user.check_password(old_password):
+            raise forms.ValidationError("Parola veche introdusă este incorectă.")
+        return old_password
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        new_password1 = cleaned_data.get('new_password1')
+        new_password2 = cleaned_data.get('new_password2')
+        
+        if new_password1 and new_password2:
+            if new_password1 != new_password2:
+                raise forms.ValidationError("Cele două parole noi nu corespund.")
+        
+        return cleaned_data
+    
+    def save(self):
+        new_password = self.cleaned_data['new_password1']
+        self.user.set_password(new_password)
+        self.user.save()
+        return self.user

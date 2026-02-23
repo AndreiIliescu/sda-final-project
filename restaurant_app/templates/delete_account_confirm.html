@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class="success-container">
+        <div class="success-wrapper">
+            <div class="delete-icon">
+                <i class="ri-error-warning-line"></i>
+            </div>
+
+            <h1>Ștergere cont</h1>
+            
+            <p class="delete-message">
+                Ești pe cale să îți ștergi contul <strong>{{ user.username }}</strong>. 
+                Această acțiune este <strong>ireversibilă</strong>.
+            </p>
+
+            <div class="warning-details">
+                <div class="warning-box">
+                    <i class="ri-information-line"></i>
+                    <div>
+                        <span class="warning-label">Ce se va întâmpla:</span>
+                        <span class="warning-value">
+                            Vei pierde accesul la cont și nu vei mai putea utiliza 
+                            aceleași credențiale pentru autentificare.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <i class="ri-shield-check-line"></i>
+                    <div>
+                        <span class="warning-label">Date păstrate:</span>
+                        <span class="warning-value">
+                            Istoricul comenzilor și rezervărilor tale va fi păstrat 
+                            în sistem pentru evidență internă.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <i class="ri-close-circle-line"></i>
+                    <div>
+                        <span class="warning-label">Date șterse:</span>
+                        <span class="warning-value">
+                            Username-ul, email-ul și numărul de telefon vor deveni disponibile 
+                            pentru alți utilizatori.
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="delete-confirmation">
+                <p class="final-warning">
+                    <i class="ri-alert-line"></i>
+                    Confirmă că înțelegi că această acțiune nu poate fi anulată.
+                </p>
+            </div>
+
+            <div class="delete-actions">
+                <form method="post" action="{% url 'delete_account' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-confirm-delete">
+                        <i class="ri-check-line"></i> Confirm ștergerea
+                    </button>
+                </form>
+                <a href="{% url 'home' %}" class="btn-cancel-delete">
+                    <i class="ri-close-line"></i> Renunț
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
