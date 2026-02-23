@@ -112,7 +112,7 @@ body {
   background-color: transparent;
   color: #bc002d !important;
   padding: 1rem 2.5rem;
-  border-radius: 50px;
+  border-radius: 8px;
   font-weight: 600;
   text-decoration: none;
   border: 2px solid #bc002d;
@@ -135,7 +135,7 @@ body {
   background-color: #bc002d;
   color: #fff !important;
   padding: 1rem 2.5rem;
-  border-radius: 50px;
+  border-radius: 8px;
   font-weight: 600;
   transition: all 0.3s ease;
   border: 2px solid #bc002d;
@@ -149,7 +149,7 @@ body {
   background-color: transparent;
   color: #1a1a1a !important;
   padding: 1rem 2.5rem;
-  border-radius: 50px;
+  border-radius: 8px;
   font-weight: 600;
   transition: all 0.3s ease;
   border: 2px solid #1a1a1a;
@@ -1713,8 +1713,10 @@ body {
 
 .delete-actions {
   display: flex;
-  gap: 1rem;
-  flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .btn-delete {
@@ -2029,21 +2031,17 @@ body {
 
 .btn-checkout,
 .btn-continue {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 0.5rem;
-  width: 100%;
-  padding: 1rem;
+  padding: 0.8rem 1.5rem;
   border-radius: 8px;
   text-decoration: none;
-  font-weight: 700;
-  font-size: 1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
   transition: all 0.3s ease;
-  margin-top: 1rem;
   border: 2px solid;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
 .btn-checkout {
@@ -2073,19 +2071,42 @@ body {
 
 .empty-cart {
   text-align: center;
-  padding: 4rem 2rem;
+  padding: 3rem 2rem;
 }
 
 .empty-cart i {
-  font-size: 5rem;
+  font-size: 1rem;
   color: #ccc;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .empty-cart p {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: #888;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.empty-cart .btn-continue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border: 2px solid #1a1a1a;
+  background: transparent;
+  color: #1a1a1a;
+  width: auto;
+}
+
+.empty-cart .btn-continue:hover {
+  background: #1a1a1a;
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
@@ -3048,21 +3069,22 @@ body {
   flex-direction: column;
   gap: 1rem;
   margin-top: 1.5rem;
+  align-items: flex-start;
 }
 
 .btn-reset-password,
 .btn-delete-account {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.9rem 1.5rem;
+  padding: 0.8rem 1.5rem;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
   transition: all 0.3s ease;
   border: 2px solid;
-  justify-content: center;
+  white-space: nowrap;
 }
 
 .btn-reset-password {
@@ -3094,6 +3116,12 @@ body {
 @media (max-width: 768px) {
   .account-actions {
     gap: 0.8rem;
+    align-items: stretch;
+  }
+
+  .btn-reset-password,
+  .btn-delete-account {
+    justify-content: center;
   }
 }
 
@@ -3207,8 +3235,20 @@ body {
   flex-wrap: wrap;
 }
 
+.delete-actions form, 
+.delete-actions .btn-cancel-delete {
+    flex: 1;
+    display: flex;
+}
+
+.delete-actions form .btn-confirm-delete {
+    width: 100%;
+}
+
 .btn-confirm-delete,
 .btn-cancel-delete {
+  flex: 1;
+  justify-content: center;
   padding: 1rem 2rem;
   border-radius: 8px;
   font-weight: 700;
