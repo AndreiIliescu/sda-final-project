@@ -4,19 +4,19 @@
 {% block content %}
     <section class="success-container">
         <div class="success-wrapper">
-            <div class="delete-icon">
+            <div class="delete-icon scroll-animate-scale">
                 <i class="ri-error-warning-line"></i>
             </div>
 
-            <h1>Ștergere cont</h1>
+            <h1 class="scroll-animate">Ștergere cont</h1>
             
-            <p class="delete-message">
+            <p class="delete-message scroll-animate delay-1">
                 Ești pe cale să îți ștergi contul <strong>{{ user.username }}</strong>. 
                 Această acțiune este <strong>ireversibilă</strong>.
             </p>
 
             <div class="warning-details">
-                <div class="warning-box">
+                <div class="warning-box scroll-animate">
                     <i class="ri-information-line"></i>
                     <div>
                         <span class="warning-label">Ce se va întâmpla:</span>
@@ -27,7 +27,7 @@
                     </div>
                 </div>
 
-                <div class="warning-box">
+                <div class="warning-box scroll-animate delay-2">
                     <i class="ri-shield-check-line"></i>
                     <div>
                         <span class="warning-label">Date păstrate:</span>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
 
-                <div class="warning-box">
+                <div class="warning-box scroll-animate delay-3">
                     <i class="ri-close-circle-line"></i>
                     <div>
                         <span class="warning-label">Date șterse:</span>
@@ -50,14 +50,14 @@
                 </div>
             </div>
 
-            <div class="delete-confirmation">
+            <div class="delete-confirmation scroll-animate delay-2">
                 <p class="final-warning">
                     <i class="ri-alert-line"></i>
                     Confirmă că înțelegi că această acțiune nu poate fi anulată.
                 </p>
             </div>
 
-            <div class="delete-actions">
+            <div class="delete-actions scroll-animate delay-4">
                 <form method="post" action="{% url 'delete_account' %}" style="display: inline;">
                     {% csrf_token %}
                     <button type="submit" class="btn-confirm-delete">

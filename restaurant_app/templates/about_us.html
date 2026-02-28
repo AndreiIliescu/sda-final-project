@@ -8,7 +8,7 @@
             <h1>Povestea Nova Sushi: Din Pasiune pentru Asie</h1>
 
             <div class="about__row">
-                <div class="about__content">
+                <div class="about__content scroll-animate-left">
                     <div class="about__subtitle"><h2>O nouă stea în universul culinar</h2></div>
                     <div class="about__p">
                         <p>Povestea Nova Sushi a început dintr-o dorință simplă: aceea de a aduce gustul rafinat și echilibrat al 
@@ -20,13 +20,13 @@
                         </p>
                     </div>
                 </div>
-                <div class="about__image">
+                <div class="about__image scroll-animate-right">
                     <img src="{% static 'images/about_images/restaurant.webp' %}" alt="Interiorul restaurantului Nova Sushi">
                 </div>
             </div>
 
             <div class="about__row reverse">
-                <div class="about__content">
+                <div class="about__content scroll-animate-right">
                     <div class="about__subtitle"><h2>Filozofia noastră: Prospețime fără compromisuri</h2></div>
                     <div class="about__p">
                         <p>Știm că secretul unui sushi perfect stă în detalii, iar detaliile nu pot fi mascate. De la orezul 
@@ -38,12 +38,12 @@
                         </p>
                     </div>
                 </div>
-                <div class="about__image">
+                <div class="about__image scroll-animate-left">
                     <img src="{% static 'images/about_images/dishes.webp' %}" alt="Platouri cu mancare si bucatarul chef">
                 </div>
             </div>
 
-            <div class="about__full-width">
+            <div class="about__full-width scroll-animate">
                 <div class="about__subtitle"><h2>Mai mult decât Sushi</h2></div>
                 <div class="about__p">
                     <p>Deși sushi este inima meniului nostru, sufletul bucătăriei asiatice este vast și plin de surprize. La noi 
@@ -55,11 +55,11 @@
                 </div>
             </div>
 
-            <div class="about__banner">
+            <div class="about__banner scroll-animate">
                 <img src="{% static 'images/about_images/cooking_team.webp' %}" alt="Echipa de bucatari Nova">
             </div>
 
-            <div class="about__full-width">
+            <div class="about__full-width scroll-animate">
                 <div class="about__subtitle"><h2>Misiunea Nova</h2></div>
                 <div class="about__p">
                     <p>Ne dorim ca fiecare vizită la Nova Sushi sau fiecare comandă care ajunge la ușa ta să fie un moment de 
@@ -71,7 +71,7 @@
                 </div>
             </div>
 
-            <a href="{% url 'menu' %}" class="home__btn">Nu mai sta pe gânduri. Comandă acum!</a>
+            <a href="{% url 'menu' %}" class="home__btn scroll-animate delay-2">Nu mai sta pe gânduri. Comandă acum!</a>
         </div>
     </section>
 {% endblock %}

@@ -5,17 +5,17 @@
     {% comment %} MENU {% endcomment %}
     <section id="menu">
         <div class="menu__container">
-            <h1>Meniul Nova Sushi</h1>
-            <p>Exploră selecția noastră de preparate autentice. De la prospețimea sushi-ului, la aromele complexe din Ramen și deserturile tradiționale japoneze.</p>
+            <h1 class="scroll-animate">Meniul Nova Sushi</h1>
+            <p class="scroll-animate delay-1">Exploră selecția noastră de preparate autentice. De la prospețimea sushi-ului, la aromele complexe din Ramen și deserturile tradiționale japoneze.</p>
         </div>
 
         {% for cat in categories %}
             <div class="menu__category">
-                <h2 class="category__name">{{ cat.name }}</h2>
+                <h2 class="category__name scroll-animate">{{ cat.name }}</h2>
                 
                 <div class="menu__grid">
                     {% for product in cat.products.all %}
-                    <div class="menu__card">
+                    <div class="menu__card scroll-animate-scale">
                         {% if product.image %}
                             <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card__img" loading="lazy">
                         {% endif %}

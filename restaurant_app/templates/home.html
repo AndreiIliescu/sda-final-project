@@ -6,18 +6,18 @@
     {% comment %} HOME {% endcomment %}
     <section>
         <div class="home__container">
-            <h1>Nova Sushi: Tradiție Japoneză, Gust Modern</h1>
-            <p>
+            <h1 class="scroll-animate">Nova Sushi: Tradiție Japoneză, Gust Modern</h1>
+            <p class="scroll-animate delay-1">
                 La Nova Sushi, credem că mâncarea este o experiență, nu doar o necesitate. Fie că ești un iubitor devotat de Sashimi 
                     și Nigiri, sau vrei să te încălzești cu un Ramen autentic și să savurezi o bere japoneză rece, meniul nostru este 
                     creat pentru a-ți răsfăța simțurile. Folosim doar ingrediente premium, pește proaspăt și tehnici de preparare care 
                     onorează cultura asiatică. Răsfoiește meniul nostru și pregătește-te pentru o călătorie culinară de neuitat.
             </p>
             <div class="home__buttons" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-                <a href="{% url 'menu' %}" class="btn-primary">
+                <a href="{% url 'menu' %}" class="btn-primary scroll-animate delay-2">
                     Comandă Online <i class="ri-restaurant-2-line"></i>
                 </a>
-                <a href="{% url 'book_reservation' %}" class="btn-secondary">
+                <a href="{% url 'book_reservation' %}" class="btn-secondary scroll-animate delay-2">
                     Rezervă o Masă <i class="ri-calendar-check-line"></i>
                 </a>
             </div>
@@ -51,7 +51,7 @@
         </div>
 
         <div class="home__container">
-            <h2>Ce au de spus clienții noștri</h2>
+            <h2 class="scroll-animate delay-3">Ce au de spus clienții noștri</h2>
         </div>
 
         <div class="reviews__carousel">

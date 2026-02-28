@@ -5,7 +5,7 @@
 
 {% block content %}
     {% comment %} ALLERGEN LIST AND NUTRITIONAL VALUES {% endcomment %}
-    <section id="allergen">
+    <section id="allergen" class="scroll-animate">
         <h1>Alergeni și Valori Nutriționale – Nova Sushi</h1>
         <p>Transparența și siguranța clienților noștri sunt prioritare. Pentru ca tu să te bucuri de experiența Nova Sushi 
             fără nicio grijă, am centralizat aici toate informațiile necesare despre ingredientele folosite, prezența 
@@ -65,6 +65,6 @@
             excelență.
         </p>
 
-        <a href="{% url 'menu' %}" class="home__btn">Revino la meniu</a>
+        <a href="{% url 'menu' %}" class="home__btn scroll-animate delay-2">Revino la meniu</a>
     </section>
 {% endblock %}

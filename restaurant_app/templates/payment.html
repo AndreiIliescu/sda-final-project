@@ -5,7 +5,7 @@
     <section class="payment-container">
         <div class="payment-wrapper">
             <div class="payment-header">
-                <h1>Plată securizată</h1>
+                <h1 class="scroll-animate">Plată securizată</h1>
             </div>
 
             <div class="payment-content">
@@ -13,7 +13,7 @@
                     <form method="post" class="payment-form">
                         {% csrf_token %}
 
-                        <div class="form-section">
+                        <div class="form-section scroll-animate-left">
                             <h2>Detalii card</h2>
 
                             <div class="form-group">
@@ -47,17 +47,17 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn-pay">
+                        <button type="submit" class="btn-pay scroll-animate">
                             <i class="ri-bank-card-line"></i> Plasează comanda
                         </button>
 
-                        <a href="{% url 'checkout' %}" class="btn-cancel-payment">
+                        <a href="{% url 'checkout' %}" class="btn-cancel-payment scroll-animate">
                             <i class="ri-arrow-left-line"></i> Înapoi la checkout
                         </a>
                     </form>
                 </div>
 
-                <div class="payment-right">
+                <div class="payment-right scroll-animate-right">
                     <div class="order-summary-payment">
                         <h2>Rezumatul comenzii</h2>
 

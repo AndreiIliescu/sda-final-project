@@ -9,7 +9,7 @@
             {% if cart %}
                 <div class="cart-items">
                     {% for key, item in cart.items %}
-                        <div class="cart-item">
+                        <div class="cart-item scroll-animate-scale">
                             <div class="item-image">
                                 {% if item.image %}
                                     <img src="{{ item.image }}" alt="{{ item.name }}" />
@@ -65,7 +65,7 @@
                     {% endfor %}
                 </div>
 
-                <div class="cart-summary">
+                <div class="cart-summary scroll-animate-scale">
                     <div class="summary-content">
                         <h2>Rezumatul comenzii</h2>
                         <div class="summary-row">
@@ -90,7 +90,7 @@
                 </div>
 
             {% else %}
-                <div class="empty-cart">
+                <div class="empty-cart scroll-animate">
                     <i class="ri-shopping-cart-line"></i>
                     <p>Coșul tău este gol</p>
                     <a href="{% url 'menu' %}" class="btn-continue">

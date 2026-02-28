@@ -4,13 +4,13 @@
 {% block content %}
     <section class="checkout-container">
         <div class="checkout-wrapper">
-            <h1>Finalizează comanda</h1>
+            <h1 class="scroll-animate">Finalizează comanda</h1>
 
             <form method="post" class="checkout-form">
                 {% csrf_token %}
 
                 <div class="checkout-content">
-                    <div class="checkout-left">
+                    <div class="checkout-left scroll-animate-left">
                         <div class="form-section">
                             <h2>Date de livrare</h2>
                             
@@ -92,7 +92,7 @@
                         </div>
                     </div>
 
-                    <div class="checkout-right">
+                    <div class="checkout-right scroll-animate-right">
                         <div class="order-summary">
                             <h2>Rezumatul comenzii</h2>
 

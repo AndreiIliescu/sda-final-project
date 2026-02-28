@@ -6,7 +6,7 @@
         {% if user.is_authenticated %}
             <div class="profile-wrapper">
                 <div class="profile-header">
-                    <h1>{{user.username}}</h1>
+                    <h1 class="scroll-animate">{{user.username}}</h1>
                 </div>
 
                 {% if messages %}
@@ -19,7 +19,7 @@
                     </div>
                 {% endif %}
 
-                <div class="profile-section">
+                <div class="profile-section scroll-animate">
                     <h2>Detaliile contului</h2>
                     
                     {% if user.profile %}
@@ -61,7 +61,7 @@
                 </div>
 
                 {% if user.is_staff or user.is_superuser %}
-                    <div class="profile-section">
+                    <div class="profile-section scroll-animate delay-1">
                         <h2>Administrare</h2>
                         <div class="profile-actions">
                             <a href="{% url 'add_dish' %}" class="btn-admin">
@@ -71,7 +71,7 @@
                     </div>
                 {% endif %}
 
-                <div class="profile-section">
+                <div class="profile-section scroll-animate delay-2">
                     <h2>Produse favorite</h2>
                     
                     {% if user.profile.favorites.all %}
@@ -107,13 +107,13 @@
                     {% endif %}
                 </div>
 
-                <div class="profile-section">
+                <div class="profile-section scroll-animate delay-3">
                     <h2>Istoric comenzi</h2>
                     
                     {% if orders %}
                         <div class="orders-list">
                             {% for order in orders %}
-                                <div class="order-card">
+                                <div class="order-card scroll-animate-scale">
                                     <div class="order-header">
                                         <div class="order-info">
                                             <span class="order-number">#{{ order.order_number }}</span>
@@ -151,7 +151,7 @@
                     {% endif %}
                 </div>
 
-                <div class="profile-section">
+                <div class="profile-section scroll-animate delay-3">
                     <h2>Setări cont</h2>
                     <div class="account-actions">
                         <a href="{% url 'change_password' %}" class="btn-reset-password">

@@ -1713,10 +1713,10 @@ body {
 
 .delete-actions {
   display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .btn-delete {
@@ -3235,14 +3235,14 @@ body {
   flex-wrap: wrap;
 }
 
-.delete-actions form, 
+.delete-actions form,
 .delete-actions .btn-cancel-delete {
-    flex: 1;
-    display: flex;
+  flex: 1;
+  display: flex;
 }
 
 .delete-actions form .btn-confirm-delete {
-    width: 100%;
+  width: 100%;
 }
 
 .btn-confirm-delete,
@@ -3351,4 +3351,100 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #bc002d;
+}
+
+/* =============== Animatii la Scroll =============== */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.scroll-animate.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-animate-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.scroll-animate-left.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-animate-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.scroll-animate-right.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-animate-scale {
+  opacity: 0;
+  transform: scale(0.85);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.scroll-animate-scale.animate {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Delays pentru animații în cascadă */
+.scroll-animate:nth-child(1),
+.scroll-animate-scale:nth-child(1) {
+  transition-delay: 0s;
+}
+.scroll-animate:nth-child(2),
+.scroll-animate-scale:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.scroll-animate:nth-child(3),
+.scroll-animate-scale:nth-child(3) {
+  transition-delay: 0.2s;
+}
+.scroll-animate:nth-child(4),
+.scroll-animate-scale:nth-child(4) {
+  transition-delay: 0.3s;
+}
+.scroll-animate:nth-child(5),
+.scroll-animate-scale:nth-child(5) {
+  transition-delay: 0.4s;
+}
+.scroll-animate:nth-child(6),
+.scroll-animate-scale:nth-child(6) {
+  transition-delay: 0.5s;
+}
+
+/* Delay manual pentru butoane și elemente specifice */
+.delay-1 {
+  transition-delay: 0.1s !important;
+}
+.delay-2 {
+  transition-delay: 0.2s !important;
+}
+.delay-3 {
+  transition-delay: 0.3s !important;
+}
+.delay-4 {
+  transition-delay: 0.4s !important;
+}
+.delay-5 {
+  transition-delay: 0.5s !important;
 }
