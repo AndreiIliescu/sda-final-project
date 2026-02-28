@@ -3406,7 +3406,6 @@ body {
   transform: scale(1);
 }
 
-/* Delays pentru animații în cascadă */
 .scroll-animate:nth-child(1),
 .scroll-animate-scale:nth-child(1) {
   transition-delay: 0s;
@@ -3432,7 +3431,6 @@ body {
   transition-delay: 0.5s;
 }
 
-/* Delay manual pentru butoane și elemente specifice */
 .delay-1 {
   transition-delay: 0.1s !important;
 }
