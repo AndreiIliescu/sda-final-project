@@ -22,6 +22,7 @@ A full-stack web application for a sushi restaurant. Users can create accounts, 
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Environment Variables](#environment-variables)
+- [Logging](#logging)
 - [Running Tests](#running-tests)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
@@ -162,14 +163,34 @@ http://127.0.0.1:8000/admin/
 Create a `.env` file in the root directory of the project. Use the `.env.example` file as a reference:
 
 ```env
-SECRET_KEY=your_secret_key_here
+SECRET_KEY='your_secret_key_here'
 DEBUG=True
 
-DB_NAME = "your_database_name_here"
+DB_NAME='your_database_name_here'
 
-EMAIL_USER = "your_email_address_here"
-EMAIL_PASSWORD = "your_google_app_password_here"
+EMAIL_USER='your_email_address_here'
+EMAIL_PASSWORD='your_google_app_password_here'
+
+ADMIN_NAME=your_admin_name_here
+ADMIN_EMAIL=your_admin_email_here
 ```
+
+---
+
+## Logging
+
+The application uses Django's built-in logging system, configured in `core_app/logging.py`.
+
+Log entries are written to two destinations: the console and the file `restaurant.log`, located in the project root directory. The file is created automatically when the server starts.
+
+Log levels by destination:
+
+- Console: INFO and above for Django internals, WARNING and above for everything else
+- File: DEBUG and above for all loggers
+
+In production (when `DEBUG=False`), any ERROR-level log triggers an email notification to the addresses defined in `ADMINS` inside `settings.py`.
+
+The `restaurant.log` file is excluded from version control via `.gitignore`. Do not commit it to the repository.
 
 ---
 
@@ -189,6 +210,7 @@ python.exe .\manage.py test
 sda-final-project/
 ├── core_app/
 │   ├── asgi.py
+│   ├── logging.py
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
@@ -224,6 +246,7 @@ sda-final-project/
 │       └── script.js
 ├── requirements.txt
 ├── runtime.txt
+├── restaurant.log
 ├── .env
 ├── .env.example
 ├── .gitignore

@@ -4,13 +4,13 @@ import string
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login, logout
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
 from django.db.models import Prefetch
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, HttpResponseForbidden, Http404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 from restaurant_app.forms import ContactForm, ProductForm, RegisterProfileForm, ReservationForm, PasswordChangeForm
@@ -533,16 +533,15 @@ def delete_account_page(request):
     return redirect("delete_account_confirm")
 
 
-def is_staff(user):
-    return user.is_staff
-
-
-@user_passes_test(is_staff)
+@login_required
 def log_file_page(request, filename):
+    if not request.user.is_staff:
+        return HttpResponseForbidden("Nu ai permisiunea să accesezi această pagină.")
+    
     file_path = settings.BASE_DIR / filename
     if file_path.exists():
         with open(file_path, "r") as file:
             response = HttpResponse(file.read(), content_type="text/plain")
             return response
     else:
-        return Http404("Fila de Log nu există!")
+        raise Http404("Fila de Log nu există!")
