@@ -208,25 +208,32 @@ python.exe .\manage.py test
 
 ```
 sda-final-project/
+├── .venv/
 ├── core_app/
+│   ├── __init__.py
 │   ├── asgi.py
 │   ├── logging.py
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
 ├── docs/
-│   └── schreenshots/
-├── media/
-│   └── products/
+│   └── screenshots/
+│       ├── ...
 ├── restaurant_app/
+│   ├── migrations/
+│   │   ├── ...
+│   │   └── __init__.py
 │   ├── templates/
-│   |   ├── footer_pages/
-│   |   │   └── cookie_policy.html
-│   |   ├── base.html
-│   |   ├── home.html
-│   |   ├── about_us.html
-│   |   ├── menu.html
-│   |   └── contact_us.html
+│   │   ├── footer_pages/
+│   │   │   ├── cookie_policy.html
+│   │   │   └── ...
+│   │   ├── about_us.html
+│   │   ├── base.html
+│   │   ├── contact_us.html
+│   │   ├── home.html
+│   │   ├── menu.html
+│   │   └── ...
+│   ├── __init__.py
 │   ├── admin.py
 │   ├── apps.py
 │   ├── forms.py
@@ -235,24 +242,30 @@ sda-final-project/
 │   └── views.py
 ├── static/
 │   ├── css/
-│   |   └── style.css
+│   │   └── style.css
 │   ├── favicons/
+│   │   ├── ...
 │   ├── images/
-│   |   ├── about_images/
-│   |   ├── carousel_images/
-│   |   ├── footer_images/
-│   |   └── logo.webp
+│   │   ├── about_images/
+│   │   │   ├── ...
+│   │   ├── carousel_images/
+│   │   │   ├── ...
+│   │   ├── footer_images/
+│   │   │   ├── ...
+│   │   └── logo.webp
 │   └── js/
-│       └── script.js
-├── requirements.txt
-├── runtime.txt
-├── restaurant.log
+│       ├── script.js
+│       └── scroll_animations.js
 ├── .env
 ├── .env.example
 ├── .gitignore
-├── manage.py
+├── db.sqlite3
 ├── LICENSE
-└── README.md
+├── README.md
+├── manage.py
+├── requirements.txt
+├── restaurant.log
+└── runtime.txt
 ```
 
 ---
