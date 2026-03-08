@@ -62,6 +62,8 @@ urlpatterns = [
     path("politica-cookies/", views.cookies_policy_page, name="cookies"),
     path("securitatea-datelor/", views.data_security_page, name="data"),
     path("datele-companiei/", views.company_identification_data_page, name="company"),
+    
+    path("loguri/<filename>/", views.log_file_page, name="log_file_page"),
 ]
 
 if settings.DEBUG:

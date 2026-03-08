@@ -13,9 +13,10 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 import os
 from dotenv import load_dotenv
 from pathlib import Path
+from core_app.logging import LOGGING
 
 
-load_dotenv()
+load_dotenv(override=True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -139,6 +140,10 @@ EMAIL_TIMEOUT = 5
 EMAIL_HOST_USER = os.getenv("EMAIL_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASSWORD")
 DEFAULT_FROM_EMAIL = f"Nova Sushi <{os.getenv('EMAIL_USER')}>"
+
+ADMINS = [
+    (os.getenv("ADMIN_NAME"), os.getenv("ADMIN_EMAIL")),
+]
 
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "home"
